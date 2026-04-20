@@ -5,8 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "gitsource>=0.0.4",
     "groq>=1.2.0",
     "jupyter>=1.1.1",
+    "minsearch>=0.0.10",
     "openai>=2.32.0",
     "python-dotenv>=1.2.2",
+    "python-frontmatter>=1.1.0",
+    "requests>=2.33.1",
 ]

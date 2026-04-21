@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "gitsource>=0.0.4",
     "groq>=1.2.0",
+    "jaxn>=0.0.5",
     "jupyter>=1.1.1",
     "minsearch>=0.0.10",
     "openai>=2.32.0",

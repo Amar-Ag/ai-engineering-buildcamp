@@ -9,6 +9,7 @@ dependencies = [
     "groq>=1.2.0",
     "jaxn>=0.0.5",
     "jupyter>=1.1.1",
+    "markitdown[pdf]>=0.1.5",
     "minsearch>=0.0.10",
     "openai>=2.32.0",
     "python-dotenv>=1.2.2",

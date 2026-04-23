@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "gitsource>=0.0.4",
+    "google-genai>=1.73.1",
+    "google-generativeai>=0.8.6",
     "groq>=1.2.0",
     "jaxn>=0.0.5",
     "jupyter>=1.1.1",
@@ -15,4 +17,5 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "python-frontmatter>=1.1.0",
     "requests>=2.33.1",
+    "youtube-transcript-api>=1.2.4",
 ]

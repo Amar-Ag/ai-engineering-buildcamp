@@ -14,8 +14,10 @@ dependencies = [
     "markitdown[pdf]>=0.1.5",
     "minsearch>=0.0.10",
     "openai>=2.32.0",
+    "pydantic-ai>=1.87.0",
     "python-dotenv>=1.2.2",
     "python-frontmatter>=1.1.0",
     "requests>=2.33.1",
+    "toyaikit>=0.0.10",
     "youtube-transcript-api>=1.2.4",
 ]

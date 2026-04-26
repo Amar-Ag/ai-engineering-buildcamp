@@ -17,6 +17,7 @@ dependencies = [
     "pydantic-ai>=1.87.0",
     "python-dotenv>=1.2.2",
     "python-frontmatter>=1.1.0",
+    "qdrant-client[fastembed]>=1.17.1",
     "requests>=2.33.1",
     "toyaikit>=0.0.10",
     "youtube-transcript-api>=1.2.4",

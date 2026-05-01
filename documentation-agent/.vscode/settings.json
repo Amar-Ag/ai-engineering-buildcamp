@@ -1,0 +1,9 @@
+{
+    "python.testing.pytestArgs": [
+        "documentation-agent/tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.cwd": "${workspaceFolder}/documentation-agent",
+    "python.defaultInterpreterPath": "${workspaceFolder}/documentation-agent/.venv/bin/python"
+}

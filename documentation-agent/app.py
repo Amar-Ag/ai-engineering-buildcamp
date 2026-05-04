@@ -187,6 +187,15 @@ def activity_html_for_tool(tool_name: str, args_str: str) -> str:
         return f"⚙️ {tool_name}({args_str[:60]})"
 
 
+def render_references(references: list) -> str:
+    if not references:
+        return ""
+    items = ""
+    for ref in references:
+        url = GITHUB_BASE + ref.file_path
+        items += f'<div class="activity-item">📎 <a href="{url}" target="_blank">{ref.file_path}</a> — {ref.explanation}</div>'
+    return f'<div class="activity-box"><strong>📚 References</strong><br>{items}</div>'
+
 # ── Streaming runner ─────────────────────────────────────────────────────────
 class UIStreamHandler(JSONParserHandler):
     """Captures streaming JSON chunks for the answer field."""
@@ -196,6 +205,7 @@ class UIStreamHandler(JSONParserHandler):
         self._answer_so_far = ""
         self.metadata = {}
         self.followup_questions = []
+        self.references = []
 
     def on_value_chunk(self, path: str, field_name: str, chunk: str) -> None:
         if path == "" and field_name == "answer":
@@ -222,6 +232,11 @@ class UIStreamHandler(JSONParserHandler):
     def on_array_item_end(self, path: str, field_name: str, item=None) -> None:
         if field_name == "followup_questions" and item is not None:
             self.followup_questions.append(item)
+        elif field_name == "references" and item is not None:
+            # item is a dict with file_path and explanation
+            if isinstance(item, dict):
+                from models import Reference
+                self.references.append(Reference(**item))
 
     @property
     def answer(self) -> str:
@@ -304,8 +319,9 @@ async def run_streaming(user_prompt: str, message_history: list, activities_ref:
     answer = handler.answer
     metadata = handler.metadata
     followup_questions = handler.followup_questions
+    references = handler.references
 
-    return answer, metadata, followup_questions, new_messages, act_list
+    return answer, metadata, followup_questions,references, new_messages, act_list
 
 
 # ── Render existing chat history ─────────────────────────────────────────────
@@ -323,6 +339,8 @@ for idx, msg in enumerate(st.session_state.messages):
             # Metadata below the answer
             if msg.get("meta"):
                 st.markdown(render_metadata(msg["meta"]), unsafe_allow_html=True)
+            if msg.get("references"):
+                st.markdown(render_references(msg["references"]), unsafe_allow_html=True)    
 
 
 # ── Follow-up buttons (only for last assistant message) ─────────────────────
@@ -378,7 +396,7 @@ if prompt:
         #     )
         # )
 
-        answer, metadata, followup_questions, new_messages, act_list = loop.run_until_complete(
+        answer, metadata, followup_questions, references, new_messages, act_list = loop.run_until_complete(
             run_streaming(
                 prompt,
                 st.session_state.agent_messages,
@@ -390,6 +408,8 @@ if prompt:
         # Render final metadata
         if metadata:
             st.markdown(render_metadata(metadata), unsafe_allow_html=True)
+        if references:
+            st.markdown(render_references(references), unsafe_allow_html=True)
 
     # Persist to session
     st.session_state.agent_messages.extend(new_messages)
@@ -399,6 +419,7 @@ if prompt:
             "content": answer,
             "activities": act_list,
             "meta": metadata,
+            "references": references,
             "followup_questions": followup_questions,
         }
     )

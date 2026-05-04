@@ -3,38 +3,38 @@ from dataclasses import dataclass
 
 from pydantic_ai import Agent, AgentRunResult
 from pydantic_ai.run import AgentRun
-from pydantic_ai._agent_graph import ModelRequestNode, CallToolsNode
+from pydantic_ai._agent_graph import UserPromptNode, ModelRequestNode, CallToolsNode
 from pydantic_ai.messages import FunctionToolCallEvent
 from jaxn import JSONParserHandler, StreamingJSONParser
 
 from tools import SearchTools
 from models import RAGResponse
 
-
 DEFAULT_INSTRUCTIONS = """
 You're a documentation assistant.
 
 Answer the user question using only the documentation knowledge base.
 
+Your user is a developer who is using Evidently and your task is to help them with it.
+That's why when you see code examples in the documenets you analyze,
+always include code snippets in your answer.
+
 Make 3 iterations:
 
 1) First iteration:
    - Perform one search using the search tool to identify potentially relevant documents.
-   - Explain (in 2-3 sentences) why this search query is appropriate for the user question.
 
 2) Second iteration:
    - Analyze the results from the previous search.
    - Based on the filenames or documents returned, perform:
        - Up to 2 additional search queries to refine or expand coverage, and
        - One or more get_file calls to retrieve the full content of the most relevant documents.
-   - For each search or get_file call, explain (in 2-3 sentences) why this action is necessary and how it helps answer the question.
 
 3) Third iteration:
    - Analyze the retrieved document contents from get_file.
    - Synthesize the information from these documents into a final answer to the user.
 
 IMPORTANT:
-- At every step, explicitly explain your reasoning for each search query or file retrieval.
 - Use only facts found in the documentation knowledge base.
 - Do not introduce outside knowledge or assumptions.
 - If the answer cannot be found in the retrieved documents, clearly inform the user.
@@ -146,6 +146,9 @@ async def run_agent(
 
     return result
 
+async def run_agent_test(agent, user_prompt, message_history=None):
+    runner = AgentStreamRunner(agent, JSONParserHandler())
+    return await runner.run(user_prompt, message_history)
 
 
 class RAGResponseHandler(JSONParserHandler):
@@ -204,21 +207,65 @@ async def run_agent_stream(
         message_history=None
     ):
 
-    if message_history is None:
-        message_history = []
+    runner = AgentStreamRunner(agent, RAGResponseHandler())
+    return await runner.run(user_prompt, message_history)
 
-    async with agent.iter(
-        user_prompt,
-        message_history=message_history,
-        output_type=RAGResponse
-    ) as agent_run:
-        async for node in agent_run:
-            if Agent.is_user_prompt_node(node):
-                print(f"USER PROMPT ({agent.name}): {node.user_prompt}")
-            elif Agent.is_model_request_node(node):
-                await print_stream_node(node, agent_run)
-            elif Agent.is_call_tools_node(node):
-                await print_tool_calls(node, agent_run, agent.name)
 
-        return agent_run
+class AgentStreamRunner:
+    
+    def __init__(self, agent: Agent, handler = JSONParserHandler):
+        self.agent = agent
+        self.handler = handler
 
+    async def run(self, user_prompt: str, message_history=None):
+        if message_history is None:
+            message_history = []
+
+        async with self.agent.iter(
+            user_prompt,
+            message_history=message_history,
+            output_type=RAGResponse
+        ) as agent_run:
+            async for node in agent_run:
+                if Agent.is_user_prompt_node(node):
+                    await self.process_user_node(node, agent_run)
+                elif Agent.is_model_request_node(node):
+                    await self.process_model_request_node(node, agent_run)
+                elif Agent.is_call_tools_node(node):
+                    await self.process_call_tools_node(node, agent_run)
+
+            return agent_run.result
+    
+    async def process_user_node(self, node: UserPromptNode, agent_run: AgentRun):
+        print(f"USER PROMPT ({self.agent.name}): {node.user_prompt}")
+
+    async def process_model_request_node(self, node: ModelRequestNode, agent_run: AgentRun):
+        args_so_far = ""
+        parser = StreamingJSONParser(self.handler)
+
+        async with node.stream(agent_run.ctx) as stream:
+            async for response in stream.stream_responses():
+                for part in response.parts:
+                    if part.part_kind != 'tool-call':
+                        continue
+                    if part.tool_name != 'final_result':
+                        continue
+
+                    args_new = part.args
+                    if isinstance(args_new, dict):
+                        import json
+                        args_new = json.dumps(args_new)
+
+                    args_new_chunk = args_new[len(args_so_far):]
+                    args_so_far = args_new
+                    parser.parse_incremental(args_new_chunk)
+
+    async def process_call_tools_node(self, node: CallToolsNode, agent_run: AgentRun):
+        async with node.stream(agent_run.ctx) as events:
+            async for event in events:
+                if not isinstance(event, FunctionToolCallEvent):
+                    continue
+
+                tool_name = event.part.tool_name
+                args = event.part.args
+                print(f"TOOL CALL ({self.agent.name}): {tool_name}({args})")

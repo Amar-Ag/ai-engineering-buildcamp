@@ -4,11 +4,12 @@ import pytest
 import dotenv
 dotenv.load_dotenv()
 
-from doc_agent import create_agent, run_agent_stream, run_agent_test, DocumentationAgentConfig, DEFAULT_INSTRUCTIONS
+from doc_agent import create_agent, DocumentationAgentConfig, DEFAULT_INSTRUCTIONS, AgentStreamRunner
 from tools import create_documentation_tools_cached
 from tests.utils import collect_tools, ToolCall
 from time import time
-
+from jaxn import JSONParserHandler
+from tests.cost_tracker import capture_usage
 
 @pytest.fixture(scope="module")
 def agent():
@@ -25,6 +26,20 @@ def agent():
     print(f'loading agent took {t1 - t0}')
 
     return agent
+
+
+async def run_agent_test(agent, user_prompt, message_history=None):
+    runner = AgentStreamRunner(agent, JSONParserHandler())
+    result = await runner.run(user_prompt, message_history)
+
+    provider = agent.model.system
+    model_name = agent.model.model_name
+    model = f'{provider}:{model_name}'
+
+    capture_usage(model, result)
+    return result
+
+
 
 @pytest.mark.asyncio
 async def test_agent_runs(agent):

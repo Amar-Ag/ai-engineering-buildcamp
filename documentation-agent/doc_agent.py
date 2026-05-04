@@ -79,7 +79,7 @@ Additional notes:
 @dataclass
 class DocumentationAgentConfig:
     # model: str = 'google-gla:gemini-2.5-flash'# change from openai:gpt-4o-mini
-    model: str = 'google-gla:gemini-2.5-flash-lite'  
+    model: str = 'google-gla:gemini-2.5-flash'  
     name: str = 'search'
     instructions: str = SIMPLE_INSTRUCTIONS
 
@@ -145,11 +145,6 @@ async def run_agent(
     )
 
     return result
-
-async def run_agent_test(agent, user_prompt, message_history=None):
-    runner = AgentStreamRunner(agent, JSONParserHandler())
-    return await runner.run(user_prompt, message_history)
-
 
 class RAGResponseHandler(JSONParserHandler):
     def on_value_chunk(self, path: str, field_name: str, chunk: str) -> None:

@@ -4,6 +4,9 @@ import dotenv
 dotenv.load_dotenv()
 
 from sql_tools import SQLTools, con, setup_database
+from cost_tracker import capture_usage
+
+
 
 class SQLResult(BaseModel):
     sql_query: str = Field(description="The SQL query that was executed")
@@ -21,11 +24,17 @@ def create_agent():
     sql_tools = SQLTools(con)
     return Agent(
         name="sql_agent",
-        model="google-gla:gemini-2.5-flash",
+        model="google-gla:gemini-2.5-flash-lite",
         tools=[sql_tools.get_schema, sql_tools.run_sql],
         instructions=DEFAULT_INSTRUCTIONS,
         output_type=SQLResult,
     )
+
+async def run_agent_test(agent, user_prompt):
+    result = await agent.run(user_prompt)
+    model = f"google-gla:{agent.model.model_name}"
+    capture_usage(model, result)
+    return result
 
 async def main():
     setup_database()

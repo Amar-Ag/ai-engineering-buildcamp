@@ -1,0 +1,3 @@
+taxi.db
+*.parquet
+.cache/

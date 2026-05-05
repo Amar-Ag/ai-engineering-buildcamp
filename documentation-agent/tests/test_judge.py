@@ -1,7 +1,7 @@
 import pytest 
 
 from tools import create_documentation_tools_cached
-from doc_agent import create_agent, DocumentationAgentConfig
+from doc_agent import DEFAULT_INSTRUCTIONS, create_agent, DocumentationAgentConfig
 
 from tests.utils import run_agent_test
 from tests.judge import assert_criteria
@@ -13,7 +13,7 @@ dotenv.load_dotenv()
 @pytest.fixture(scope="module")
 def agent():
     tools = create_documentation_tools_cached()
-    agent_config = DocumentationAgentConfig()
+    agent_config = DocumentationAgentConfig(instructions=DEFAULT_INSTRUCTIONS)
     return create_agent(agent_config, tools)
 
 
@@ -26,4 +26,51 @@ async def test_agent_uses_tools(agent):
         "makes at least 2 tool calls",
         "performs search using the 'search' tool",
         "checks the content of the 'examples/LLM_judge.mdx' using 'get_file' tool",
+    ])
+
+@pytest.mark.asyncio
+async def test_ambiguous_term_judge(agent):
+    user_prompt = "judge"
+    result = await run_agent_test(agent, user_prompt)
+
+    await assert_criteria(result, [
+        "the answer is about 'LLM as a judge' (using an LLM to evaluate outputs), not about legal judges or the judicial system",
+        "follow-up questions are about LLM evaluation or related ML topics, not about the legal system or courts",
+    ])
+
+@pytest.mark.asyncio
+async def test_off_topic_question(agent):
+    user_prompt = "Sicilian defense"
+    result = await run_agent_test(agent, user_prompt)
+
+    await assert_criteria(result, [
+        "explicitly state that the question is off-topic and it only provides information about Evidently/ML evaluation",
+        "return low or zero confidence (confidence <= 0.1) since the query is unrelated to the documentation",
+        "use the 'search' tool",
+        "don't use 'get_file' tool",
+        "return no references in the answer",
+        "follow-up questions are about ML/LLM evaluation not about chess",
+    ])
+
+@pytest.mark.asyncio
+async def test_adapts_to_user_context(agent):
+    user_prompt = (
+        "how do I implement LLM as a judge? I already have my input "
+        "in a pandas dataframe with columns question, generated_answer, "
+        "expected_answer"
+    )
+    result = await run_agent_test(agent, user_prompt)
+
+    await assert_criteria(result, [
+        "the answer acknowledges the user's existing pandas dataframe and references their specific column names (question, generated_answer, expected_answer)",
+        "the answer does not show a generic tutorial that starts from scratch with a toy dataset, ignoring the user's existing data structure",
+    ])
+
+@pytest.mark.asyncio
+async def test_uses_uv_add_not_pip(agent):
+    user_prompt = "how do I install evidently?"
+    result = await run_agent_test(agent, user_prompt)
+
+    await assert_criteria(result, [
+        "any package installation instructions use 'uv add' instead of 'pip install'",
     ])

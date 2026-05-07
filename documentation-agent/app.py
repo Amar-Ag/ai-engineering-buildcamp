@@ -14,6 +14,11 @@ import dotenv
 
 dotenv.load_dotenv()
 
+import logfire
+
+logfire.configure()
+logfire.instrument_pydantic_ai()
+
 import nest_asyncio
 nest_asyncio.apply()
 

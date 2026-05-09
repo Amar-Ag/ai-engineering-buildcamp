@@ -133,8 +133,8 @@ Additional notes:
 
 @dataclass
 class DocumentationAgentConfig:
-    model: str = 'google-gla:gemini-2.5-flash'# change from openai:gpt-4o-mini
-    # model: str = 'google-gla:gemini-2.5-flash-lite'  
+    # model: str = 'google-gla:gemini-2.5-flash'# change from openai:gpt-4o-mini
+    model: str = 'google-gla:gemini-2.5-flash-lite'  
     name: str = 'search'
     instructions: str = SIMPLE_INSTRUCTIONS
 

@@ -1,0 +1,1877 @@
+[
+  {
+    "input": {
+      "question": "I see I can set up alerts, but it says I need a notification channel and an alert condition. What are my options for notification channels?",
+      "reference_answer": "You can choose between the following options: Email, Slack, and Discord.",
+      "line_number_start": 15,
+      "line_number_end": 21,
+      "question_type": "frustrated_beginner",
+      "filename": "docs/platform/alerts.mdx"
+    },
+    "rag_response": {
+      "answer": "You can choose between Email, Slack, or Discord as notification channels for alerts.",
+      "references": [
+        {
+          "file_path": "docs/platform/alerts.mdx",
+          "explanation": "This document lists the available notification channels for setting up alerts."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The documentation explicitly lists the available notification channels.",
+      "answer_type": "reference",
+      "followup_questions": [
+        "How do I set up an email notification channel?",
+        "How do I set up a Slack notification channel?",
+        "How do I set up a Discord notification channel?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based solely on documentation",
+          "passed": true,
+          "explanation": "The answer is derived directly from the content of 'docs/platform/alerts.mdx'."
+        },
+        {
+          "rule": "Answer is concise and directly addresses the user query",
+          "passed": true,
+          "explanation": "The answer directly lists the available notification channels as requested by the user."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "notification channels"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/alerts.mdx"
+        }
+      }
+    ],
+    "cost": 0.0004581
+  },
+  {
+    "input": {
+      "question": "disable telemetry env var",
+      "reference_answer": "To disable telemetry, use the environment variable: `DO_NOT_TRACK`.\nSet it to any value, for instance: `export DO_NOT_TRACK=1`.",
+      "line_number_start": 85,
+      "line_number_end": 91,
+      "question_type": "hurried_developer",
+      "filename": "faq/telemetry.mdx"
+    },
+    "rag_response": {
+      "answer": "To disable telemetry in Evidently, you can set the environment variable `DO_NOT_TRACK` to any value. For example, you can use `export DO_NOT_TRACK=1` in your terminal before starting the service. To re-enable telemetry, unset the `DO_NOT_TRACK` environment variable.",
+      "references": [
+        {
+          "file_path": "faq/telemetry.mdx",
+          "explanation": "The document explains what telemetry is, what data is collected, and provides instructions on how to enable or disable it using the `DO_NOT_TRACK` environment variable."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly supported by the documentation regarding telemetry settings.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How is telemetry data used by Evidently?",
+        "What data is collected by Evidently telemetry?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer provides specific instructions for disabling telemetry.",
+          "passed": true,
+          "explanation": "The answer clearly states to use the `DO_NOT_TRACK` environment variable and provides an example command."
+        },
+        {
+          "rule": "Answer includes relevant references.",
+          "passed": true,
+          "explanation": "The answer references the `faq/telemetry.mdx` document which contains the information about disabling telemetry."
+        },
+        {
+          "rule": "Answer avoids external information.",
+          "passed": true,
+          "explanation": "The answer is solely based on the provided documentation."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "disable telemetry environment variable"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/telemetry.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "DO_NOT_TRACK env var"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/telemetry.mdx"
+        }
+      }
+    ],
+    "cost": 0.0027989000000000004
+  },
+  {
+    "input": {
+      "question": "The documentation mentions a 'model' drift method. What does that mean and what are its default settings?",
+      "reference_answer": "The `drift_method=model` uses a binary classifier model to distinguish between embeddings in \u201ccurrent\u201d and \u201creference\u201d distributions. It returns ROC AUC as a `drift_score`. Drift is detected when `drift_score` is greater than the `threshold` or when `drift_score` is greater than the ROC AUC of the random classifier at a set `quantile_probability`. The default threshold is 0.55 (ROC AUC), and the default `quantile_probability` is 0.95. This method applies when bootstrap is True, which is the default if there are 1000 or fewer objects.",
+      "line_number_start": 95,
+      "line_number_end": 95,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/customize_embedding_drift.mdx"
+    },
+    "rag_response": {
+      "answer": "The documentation mentions a \"model\" drift method in the context of embeddings, stating that this **method** is \"coming soon\" and not yet implemented. Therefore, its default settings are not available.\n\nFor tabular data, the default drift detection method is the **Data Drift algorithm**. This algorithm automatically selects the appropriate statistical test based on the column type (numerical, categorical, text) and the size of the reference dataset. \n\nHere's a summary of the default methods for tabular data:\n\n*   **For small data (\u2264 1000 observations):**\n    *   Numerical columns (with > 5 unique values): Kolmogorov-Smirnov (K-S) test.\n    *   Categorical columns or numerical columns (with \u2264 5 unique values): Chi-squared test.\n    *   Binary categorical features: Z-test for independent samples.\n    *   All these tests use a 0.05 p-value threshold for drift detection.\n\n*   **For larger data (> 1000 observations):**\n    *   Numerical columns (with > 5 unique values): Wasserstein Distance.\n    *   Categorical columns or numerical columns (with \u2264 5 unique values): Jensen-Shannon divergence.\n    *   These methods use a default threshold of 0.1, where drift is detected if the score is greater than or equal to this value.\n\nFor text data, the default method is a domain classifier that detects drift if the ROC AUC is greater than a specified threshold. For larger datasets (> 1000 observations), the default threshold is 0.55. For smaller datasets (\u2264 1000 observations), it compares the ROC AUC to the 95th percentile of random classifier scores to prevent false positives.",
+      "references": [
+        {
+          "file_path": "metrics/customize_embedding_drift.mdx",
+          "explanation": "This document explicitly states that the 'Embeddings drift' method is 'coming soon' and therefore its default settings are unavailable."
+        },
+        {
+          "file_path": "metrics/explainer_drift.mdx",
+          "explanation": "This document explains how the default Data Drift Detection algorithm works and its behavior for tabular data, including default tests and thresholds based on dataset size and column type."
+        },
+        {
+          "file_path": "metrics/customize_data_drift.mdx",
+          "explanation": "This document provides details on how to customize data drift detection, including the default drift_share, and lists various drift detection methods and their default thresholds. It also describes the default methods for text data."
+        },
+        {
+          "file_path": "metrics/customize_data_drift.mdx",
+          "explanation": "This document details the default parameters and methods for tabular and text data drift detection, including specific tests and thresholds based on data size."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 0.9,
+      "confidence_explanation": "The answer is based on explicit information from the documentation regarding the default methods for tabular and text data drift, and a clear statement about the unavailability of the 'model' drift method for embeddings.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "What are the available drift detection methods for tabular data?",
+        "How can I customize the drift detection thresholds for my specific use case?",
+        "What are the default settings for text data drift detection?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer contains only information from the provided documentation.",
+          "passed": true,
+          "explanation": "The answer synthesizes information from the provided documents without introducing external knowledge."
+        },
+        {
+          "rule": "Answer directly addresses the user's question about the 'model' drift method and its default settings.",
+          "passed": true,
+          "explanation": "The answer clarifies that the 'model' drift method is not yet available and proceeds to describe the default settings for other drift methods mentioned in the documentation."
+        },
+        {
+          "rule": "References are provided for all key pieces of information.",
+          "passed": true,
+          "explanation": "Relevant documents are cited for the information regarding 'model' drift and the default settings for tabular and text data drift."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "model drift method and default settings"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_data_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_drift.mdx"
+        }
+      }
+    ],
+    "cost": 0.0013555000000000002
+  },
+  {
+    "input": {
+      "question": "I'm trying to evaluate my RAG system, but I'm not sure how to start. Can you explain what aspects of RAG Evidently can help me assess?",
+      "reference_answer": "Evidently can help you evaluate both retrieval and generation quality. For retrieval, it assesses the quality of retrieved contexts, including per-chunk relevance. For generation, it evaluates the quality of the final response, both with and without ground truth.",
+      "line_number_start": 10,
+      "line_number_end": 14,
+      "question_type": "frustrated_beginner",
+      "filename": "examples/LLM_rag_evals.mdx"
+    },
+    "rag_response": {
+      "answer": "\nEvidently can help you evaluate your RAG system by assessing both the retrieval and generation quality.\n\nHere are the key aspects you can assess:\n\n**1. Retrieval Quality:**\n*   **Context Relevance:** This metric evaluates if the retrieved context is relevant to the given question. You can assess this for single or multiple retrieved contexts.\n*   **Hit Rate:** For systems retrieving multiple chunks, this checks if at least one of the retrieved chunks contains relevant information.\n*   **Mean Relevance:** This calculates the average relevance score across all retrieved chunks for a given query.\n\n**2. Generation Quality:**\n*   **Correctness (with Ground Truth):** If you have a ground truth dataset, you can compare the generated responses against known correct answers using methods like LLM-based matching, Semantic Similarity, or BERTScore.\n*   **Faithfulness (without Ground Truth):** This evaluates if the generated response is faithful to the provided context and does not contain contradictions or unfaithful information.\n*   **Other Response Checks:** You can also evaluate response length constraints, refusal rates, string matching, and response tone.\n\nEvidently allows you to generate synthetic RAG datasets for evaluation purposes, where questions and ground truth answers are created from your knowledge base. You can also run these evaluations and generate reports, which can be viewed locally or uploaded to the Evidently Cloud platform for further analysis and tracking.",
+      "references": [
+        {
+          "file_path": "examples/LLM_rag_evals.mdx",
+          "explanation": "This document explains how to evaluate RAG systems using Evidently, covering both retrieval and generation quality metrics like context relevance, hit rate, mean relevance, correctness, and faithfulness."
+        },
+        {
+          "file_path": "synthetic-data/rag_data.mdx",
+          "explanation": "This document describes how to generate synthetic RAG test datasets from a knowledge base, which are essential for evaluating RAG system performance."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer directly addresses the user's question by summarizing the aspects of RAG evaluation that Evidently can help with, based on the provided documentation.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "How can I generate a synthetic dataset for RAG evaluation?",
+        "What are the specific metrics for evaluating retrieval quality?",
+        "What are the specific metrics for evaluating generation quality?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based only on documentation",
+          "passed": true,
+          "explanation": "The answer uses information found in the provided documents about RAG evaluation in Evidently."
+        },
+        {
+          "rule": "Answer is formatted correctly",
+          "passed": true,
+          "explanation": "The answer is well-structured with clear headings and bullet points."
+        },
+        {
+          "rule": "Answer directly addresses the user query",
+          "passed": true,
+          "explanation": "The answer explains the aspects of RAG Evidently can help assess."
+        },
+        {
+          "rule": "Confidence score is justified",
+          "passed": true,
+          "explanation": "Confidence is high as the answer directly synthesizes information from the relevant documents."
+        },
+        {
+          "rule": "Follow-up questions are relevant",
+          "passed": true,
+          "explanation": "The follow-up questions are logically derived from the answer and encourage further exploration of the topic."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "RAG evaluation"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_rag_evals.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "quickstart_llm.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "synthetic-data/rag_data.mdx"
+        }
+      }
+    ],
+    "cost": 0.0014167
+  },
+  {
+    "input": {
+      "question": "Can I download the generated adversarial data as a CSV?",
+      "reference_answer": "Once generated, you can download it as a CSV file.",
+      "line_number_start": 63,
+      "line_number_end": 63,
+      "question_type": "direct_inquirer",
+      "filename": "synthetic-data/adversarial_data.mdx"
+    },
+    "rag_response": {
+      "answer": "Yes, you can download the generated adversarial data as a CSV file. After generating the data, you will have the option to download it.",
+      "references": [
+        {
+          "file_path": "synthetic-data/adversarial_data.mdx",
+          "explanation": "The document mentions that after generating the adversarial data, you can download it as a CSV file."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The user asked if adversarial data can be downloaded as CSV. The documentation explicitly states that the generated data can be downloaded as a CSV file.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How do I generate adversarial data?",
+        "What are the different types of adversarial scenarios available?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based on documentation",
+          "passed": true,
+          "explanation": "The answer is directly supported by the content of synthetic-data/adversarial_data.mdx."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "download adversarial data CSV"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "synthetic-data/adversarial_data.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_generate.mdx"
+        }
+      }
+    ],
+    "cost": 0.0005773
+  },
+  {
+    "input": {
+      "question": "Can I create a custom metric that calculates the maximum value of a column and visualizes it?",
+      "reference_answer": "Let's implement `MyMaxMetric` which calculates the maximum value in a column.\n\n... (implementation details follow)",
+      "line_number_start": 29,
+      "line_number_end": 78,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/customize_metric.mdx"
+    },
+    "rag_response": {
+      "answer": "Agent error: The next request would exceed the request_limit of 50"
+    },
+    "tools": [],
+    "cost": 0.0,
+    "error": "The next request would exceed the request_limit of 50"
+  },
+  {
+    "input": {
+      "question": "How does the text drift detection work for small datasets?",
+      "reference_answer": "The default for small data with <= 1000 observations detects drift if the ROC AUC of the drift detection classifier > possible ROC AUC of the random classifier at a 95th percentile. This approach protects against false positive drift results for small datasets since we explicitly compare the classifier score against the \u201cbest random score\u201d we could obtain.",
+      "line_number_start": 101,
+      "line_number_end": 102,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/explainer_drift.mdx"
+    },
+    "rag_response": {
+      "answer": "For small datasets (<= 1000 observations), Evidently",
+      "references": [
+        {
+          "file_path": "metrics/customize_embedding_drift.mdx",
+          "explanation": "This document details the drift detection methods, including specific handling for small datasets."
+        },
+        {
+          "file_path": "metrics/explainer_drift.mdx",
+          "explanation": "This document explains the general drift detection logic and provides specifics for small datasets."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 0.9,
+      "confidence_explanation": "The answer is based on specific details found in the documentation regarding the handling of small datasets for drift detection.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "How does Evidently handle text drift for datasets larger than 1000 observations?",
+        "What are the default statistical tests used for numerical and categorical drift detection on small datasets?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based solely on documentation",
+          "passed": true,
+          "explanation": "All information used in the answer is directly extracted from the provided documentation."
+        },
+        {
+          "rule": "Answer directly addresses the user query",
+          "passed": true,
+          "explanation": "The answer specifically explains how text drift detection works for small datasets."
+        },
+        {
+          "rule": "Answer is concise and easy to understand",
+          "passed": true,
+          "explanation": "The answer is presented clearly and avoids jargon where possible."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "text drift detection small datasets"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_embedding_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_drift.mdx"
+        }
+      }
+    ],
+    "cost": 0.0010995
+  },
+  {
+    "input": {
+      "question": "What are the components to connect with Evidently Cloud?",
+      "reference_answer": "To connect with Evidently Cloud, you need to import `from evidently.ui.workspace import CloudWorkspace`.",
+      "line_number_start": 48,
+      "line_number_end": 49,
+      "question_type": "direct_inquirer",
+      "filename": "quickstart_llm.mdx"
+    },
+    "rag_response": {
+      "answer": "To connect with Evidently Cloud using Python, you need to perform the following steps:\n\n1.  **Create an Evidently Cloud Account**: Sign up for a free account at [https://app.evidently.cloud/signup](https://app.evidently.cloud/signup). After logging in, create an Organization and give it a name.\n\n2.  **Install the Evidently Python Library**:\n    ```python\n    pip install evidently\n    ```\n    or for additional dependencies:\n    ```python\n    pip install evidently[llm]\n    ```\n\n3.  **Get an API Token**: Navigate to the \"Token\" page within your Evidently Cloud account (usually accessible via a \"Key\" menu icon) and generate a token. Store this token securely.\n\n4.  **Connect from Python**: Import the `CloudWorkspace` and use your API token to establish a connection:\n    ```python\n    from evidently.ui.workspace import CloudWorkspace\n\n    ws = CloudWorkspace(\n        token=\"YOUR_API_KEY\",\n        url=\"https://app.evidently.cloud\"\n    )\n    ```\n    Alternatively, you can set the API key as an environment variable `EVIDENTLY_API_KEY`.\n\nAfter these steps, you can create a Project and start running evaluations.\n\nIt's important to note that Evidently Cloud v2 is not compatible with Evidently library versions below 0.7.0. Ensure you are using a compatible version of the Evidently library.",
+      "references": [
+        {
+          "file_path": "docs/setup/cloud.mdx",
+          "explanation": "This document provides detailed instructions on how to set up an Evidently Cloud account and connect to it using Python, including obtaining an API token and the necessary code snippets."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer directly addresses the user's question using information from the provided documentation. The steps are clear and actionable, and the connection code is accurate.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "What are the prerequisites for connecting to Evidently Cloud?",
+        "How do I manage my API tokens in Evidently Cloud?"
+      ],
+      "checks": [
+        {
+          "rule": "all_code_is_valid_python",
+          "passed": true,
+          "explanation": "All Python code snippets provided in the answer are syntactically correct."
+        },
+        {
+          "rule": "no_external_links_except_in_references",
+          "passed": true,
+          "explanation": "No external links were used in the answer other than the reference to the Evidently Cloud signup page."
+        },
+        {
+          "rule": "answer_is_grounded_in_documentation",
+          "passed": true,
+          "explanation": "The answer is entirely based on the information found in the `docs/setup/cloud.mdx` document."
+        },
+        {
+          "rule": "answer_is_relevant_to_the_question",
+          "passed": true,
+          "explanation": "The answer directly addresses the user's question about connecting to Evidently Cloud using Python."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "components to connect with Evidently Cloud"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/contact.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/why_evidently.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud connection components"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud connection"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud setup Python connection Python connection python connection token"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "connect Evidently Cloud with Python"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_workflow.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/cloud_v2.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud Python setup token URL"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud connection Python setup"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/cloud_v2.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud setup requirements"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud components Python setup"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/why_evidently.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud connection components Python"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud Python components setup"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud Python connection components setup"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/cloud_v2.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud Python components"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      }
+    ],
+    "cost": 0.10561590000000001
+  },
+  {
+    "input": {
+      "question": "How do I connect to Evidently Cloud?",
+      "reference_answer": "To connect with Evidently Cloud, you need to import the `CloudWorkspace` component from `evidently.ui.workspace`.",
+      "line_number_start": 336,
+      "line_number_end": 340,
+      "question_type": "direct_inquirer",
+      "filename": "examples/LLM_rag_evals.mdx"
+    },
+    "rag_response": {
+      "answer": "## Connecting to Evidently Cloud\n\nTo connect to Evidently Cloud, follow these steps:\n\n1.  **Create an Account:**\n    *   Sign up for a [free Evidently Cloud account](https://app.evidently.cloud/signup).\n    *   After logging in, create an Organization and give it a name.\n\n2.  **Get an API Token:**\n    *   Navigate to the **Key** menu icon to access the [Token page](https://app.evidently.cloud/token).\n    *   Generate a token and save it securely.\n\n3.  **Install Evidently:**\n    *   Install the Evidently Python library using pip:\n        ```bash\n        pip install evidently\n        ```\n        or for LLM support:\n        ```bash\n        pip install evidently[llm]\n        ```\n\n4.  **Connect from Python:**\n    *   Import the `CloudWorkspace` and pass your API token to connect. You can either pass the token directly or set it as an environment variable `EVIDENTLY_API_KEY`.\n\n    ```python\n    from evidently.ui.workspace import CloudWorkspace\n\n    ws = CloudWorkspace(\n        token=\"YOUR_API_KEY\",\n        url=\"https://app.evidently.cloud\"\n    )\n    ```\n\n    *   **Note:** For Evidently versions 0.6.7 and Evidently Cloud v1, you might need to use `from evidently.ui.workspace.cloud import CloudWorkspace`. It's recommended to use Evidently Cloud v2 with the latest library version for improved features and performance.\n\nOnce connected, you can create a Project and run your first evaluation.\n\n**Important Considerations:**\n\n*   **Evidently Cloud v2:** If you are a new user, you will be automatically enrolled in Evidently Cloud v2. This version has breaking changes and requires Evidently library version `0.7.0` or higher. Existing users can switch to v2 from their account settings. Free users will have access to Cloud v1 until May 31, 2025, after which it will enter read-only mode.\n*   **Support:** Evidently Cloud is a fully managed service, handling infrastructure, updates, and security patches. If you encounter issues or need assistance, especially with migrating to v2, paying customers can reach out to [support@evidentlyai.com](mailto:support@evidentlyai.com).",
+      "references": [
+        {
+          "file_path": "docs/setup/cloud.mdx",
+          "explanation": "Provides step-by-step instructions on how to create an Evidently Cloud account, get an API token, install the Evidently library, and connect from Python using CloudWorkspace. It also includes notes on version compatibility."
+        },
+        {
+          "file_path": "faq/oss_vs_cloud.mdx",
+          "explanation": "Explains the different Evidently products, including Evidently Cloud, and briefly touches on its managed service aspect."
+        },
+        {
+          "file_path": "introduction.mdx",
+          "explanation": "Gives a high-level overview of Evidently, mentioning Evidently Cloud as a platform for AI testing and observability."
+        },
+        {
+          "file_path": "faq/cloud_v2.mdx",
+          "explanation": "Details the changes and compatibility requirements for Evidently Cloud v2, including breaking changes and SDK versioning. It also mentions support options for paying customers."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is based on information directly retrieved from the provided documentation regarding Evidently Cloud setup and connection.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How do I get an API token for Evidently Cloud?",
+        "What are the differences between Evidently Cloud v1 and v2?",
+        "How can I install the Evidently Python library?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer contains only information from the provided documents.",
+          "passed": true,
+          "explanation": "All information in the answer is derived from the retrieved documents."
+        },
+        {
+          "rule": "Answer directly addresses the user's query.",
+          "passed": true,
+          "explanation": "The answer provides a step-by-step guide on how to connect to Evidently Cloud."
+        },
+        {
+          "rule": "Answer includes relevant references.",
+          "passed": true,
+          "explanation": "References to the documents used to construct the answer are included."
+        },
+        {
+          "rule": "Answer is well-formatted and readable.",
+          "passed": true,
+          "explanation": "The answer uses markdown for clear structure and formatting."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "connecting to Evidently Cloud"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "introduction.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/cloud_v2.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/oss_vs_cloud.mdx"
+        }
+      }
+    ],
+    "cost": 0.0054162
+  },
+  {
+    "input": {
+      "question": "How do I add a new tab to my dashboard using the Python API?",
+      "reference_answer": "To add a new Tab, you can use the command `project.dashboard.add_tab(\"Another Tab\")`.",
+      "line_number_start": 15,
+      "line_number_end": 17,
+      "question_type": "direct_inquirer",
+      "filename": "docs/platform/dashboard_add_panels.mdx"
+    },
+    "rag_response": {
+      "answer": "To add a new tab to your dashboard using the Python API, you can use the `add_tab` method. Here",
+      "references": [
+        {
+          "file_path": "docs/platform/dashboard_add_panels.mdx",
+          "explanation": "The `add_tab` method is documented in the `docs/platform/dashboard_add_panels.mdx` file, which describes how to manage dashboard elements using the Python API."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The documentation explicitly states how to add a new tab using the `add_tab` method.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I delete a tab using the Python API?",
+        "How can I add a panel to a specific tab?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer only uses information from the provided documentation.",
+          "passed": true,
+          "explanation": "The answer is solely based on the content of the `docs/platform/dashboard_add_panels.mdx` file."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "add new tab dashboard python API"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/dashboard_add_panels.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/dashboard_overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "add_tab python API"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/dashboard_add_panels.mdx"
+        }
+      }
+    ],
+    "cost": 0.0025304000000000004
+  },
+  {
+    "input": {
+      "question": "When I use `ContextRelevance` with `aggregation_method='hit'`, what exactly do I get in the output?",
+      "reference_answer": "In this case you will get a binary \"Hit\" on whether the context is relevant or not.",
+      "line_number_start": 138,
+      "line_number_end": 138,
+      "question_type": "context_assumer",
+      "filename": "examples/LLM_rag_evals.mdx"
+    },
+    "rag_response": {
+      "answer": "When using `ContextRelevance` with `aggregation_method='hit'`, the output indicates whether at least one of the retrieved context chunks is considered relevant to the question. This provides a binary assessment ('Hit' or 'Miss') for each query, signifying if any relevant information was found within the provided contexts, rather than an average relevance score.",
+      "references": [
+        {
+          "file_path": "metrics/all_descriptors.mdx",
+          "explanation": "The documentation for `ContextRelevance` explicitly states that `aggregation_method='hit'` means 'at least one chunk is relevant'."
+        },
+        {
+          "file_path": "examples/LLM_rag_evals.mdx",
+          "explanation": "This example demonstrates the usage of `ContextRelevance` with `aggregation_method='hit'` and shows the resulting binary 'Hit' output, confirming its behavior."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The documentation clearly defines the behavior of `aggregation_method='hit'` for `ContextRelevance`, and the example code confirms this behavior.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "How does the 'hit' aggregation method determine relevance for a single chunk?",
+        "Can I customize the threshold for considering a chunk as relevant when using 'hit' aggregation?",
+        "What is the difference between 'hit' and 'mean' aggregation methods for `ContextRelevance`?"
+      ],
+      "checks": [
+        {
+          "rule": "response_uses_only_documentation",
+          "passed": true,
+          "explanation": "The answer is based on the provided documentation for `ContextRelevance` and its examples."
+        },
+        {
+          "rule": "response_is_grounded_in_documentation",
+          "passed": true,
+          "explanation": "The explanation of the 'hit' aggregation method is directly supported by the text in `metrics/all_descriptors.mdx` and `examples/LLM_rag_evals.mdx`."
+        },
+        {
+          "rule": "response_is_relevant_to_the_query",
+          "passed": true,
+          "explanation": "The answer directly addresses what the user gets when using `ContextRelevance` with `aggregation_method='hit'`."
+        },
+        {
+          "rule": "response_is_complete",
+          "passed": true,
+          "explanation": "The answer fully explains the output of `ContextRelevance` with `aggregation_method='hit'`."
+        },
+        {
+          "rule": "response_is_concise",
+          "passed": true,
+          "explanation": "The answer is direct and avoids unnecessary jargon or length."
+        },
+        {
+          "rule": "response_is_understandable",
+          "passed": true,
+          "explanation": "The explanation is clear and easy to understand."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "ContextRelevance aggregation_method='hit'"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/all_descriptors.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_rag_evals.mdx"
+        }
+      }
+    ],
+    "cost": 0.0015339000000000002
+  },
+  {
+    "input": {
+      "question": "What can I do after uploading my eval to Evidently Cloud?",
+      "reference_answer": "After uploading your eval, you can go to the Evidently Cloud, open your Project, and explore the Report with scored data that's easy to interact with.",
+      "line_number_start": 360,
+      "line_number_end": 360,
+      "question_type": "direct_inquirer",
+      "filename": "examples/LLM_rag_evals.mdx"
+    },
+    "rag_response": {
+      "answer": "After uploading your evaluation results to Evidently Cloud, you can explore them in the platform. This involves navigating to the \"Explore\" view within your project to debug results, compare outcomes between different runs, and understand the details of your evaluations. You can also optionally set up a Dashboard to track metrics over time and monitor changes across experiments or ongoing tests. Furthermore, you have the option to configure alerts for failed tests.\n\nIf you choose to upload the raw data along with the evaluation results, it can aid in row-level debugging and analysis. This capability, however, is available only for Evidently Cloud and Enterprise versions. You can also include datasets when uploading reports to the platform, allowing you to simultaneously upload the report and the dataset it was generated for, with any added scores. This is done using the `include_data=True` parameter when adding a run.",
+      "references": [
+        {
+          "file_path": "docs/platform/evals_api.mdx",
+          "explanation": "This document explains how to upload evaluation results to the Evidently Platform, including the options to include raw data and the workflow for exploring results, setting up dashboards, and configuring alerts."
+        },
+        {
+          "file_path": "docs/platform/datasets_workflow.mdx",
+          "explanation": "This document describes how to upload datasets to the Evidently Platform, and mentions the `include_data` parameter which allows uploading raw data along with reports."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is based on information directly retrieved from the documentation regarding the actions that can be taken after uploading evaluations to Evidently Cloud, including exploration, dashboarding, alerts, and data inclusion options.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I set up a dashboard to track my evaluation results over time?",
+        "What are the steps to configure alerts for failed tests?",
+        "How do I include raw data when uploading my evaluation results?",
+        "Where can I find the \"Explore\" view in Evidently Cloud?"
+      ],
+      "checks": [
+        {
+          "rule": "response_contains_only_information_from_the_knowledge_base",
+          "passed": true,
+          "explanation": "The answer is synthesized from the provided documents and does not include external information."
+        },
+        {
+          "rule": "response_does_not_introduce_outside_knowledge_or_assumptions",
+          "passed": true,
+          "explanation": "The answer strictly adheres to the information present in the documentation."
+        },
+        {
+          "rule": "answer_is_in_markdown",
+          "passed": true,
+          "explanation": "The answer is formatted in markdown."
+        },
+        {
+          "rule": "answer_is_helpful_and_comprehensive",
+          "passed": true,
+          "explanation": "The answer details various actions that can be taken after uploading evaluations to Evidently Cloud, covering exploration, monitoring, and data management."
+        },
+        {
+          "rule": "references_are_relevant_and_cited",
+          "passed": true,
+          "explanation": "The references provided are directly related to the content of the answer and are cited correctly."
+        },
+        {
+          "rule": "confidence_score_is_justified",
+          "passed": true,
+          "explanation": "The confidence score of 1.0 is justified as the answer is directly derived from the documentation and comprehensively addresses the user's query."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "after uploading eval to Evidently Cloud"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/evaluations_overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud after upload"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_workflow.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/evaluations_overview.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud upload eval results"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/evals_api.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently Cloud upload results"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/evals_api.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_workflow.mdx"
+        }
+      }
+    ],
+    "cost": 0.0045334
+  },
+  {
+    "input": {
+      "question": "What's the range for NDCG?",
+      "reference_answer": "Range: 0 to 1, where 1 indicates perfect ranking.",
+      "line_number_start": 130,
+      "line_number_end": 130,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/explainer_recsys.mdx"
+    },
+    "rag_response": {
+      "answer": "The range for NDCG (Normalized Discounted Cumulative Gain) is from 0 to 1. A value of 1 indicates a perfect ranking, while a value of 0 indicates a poor ranking.",
+      "references": [
+        {
+          "file_path": "metrics/explainer_recsys.mdx",
+          "explanation": "The document explicitly states the range for NDCG as '0 to 1, where 1 indicates perfect ranking.'"
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly and explicitly stated in the documentation.",
+      "answer_type": "reference",
+      "followup_questions": [
+        "What is NDCG?",
+        "How is NDCG calculated?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based only on documentation",
+          "passed": true,
+          "explanation": "The answer is derived directly from the provided documents."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "NDCG range"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_recsys.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/overview.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_recsys.mdx"
+        }
+      }
+    ],
+    "cost": 0.0024142
+  },
+  {
+    "input": {
+      "question": "How do I set up a report to compare my current data to a reference dataset?",
+      "reference_answer": "To run a Preset on your data, comparing `current` data to `ref` data, you can set up a Report like this:\n```python\nreport = Report([\n    DataDriftPreset(),\n])\n\nmy_eval = report.run(current, ref)\n```",
+      "line_number_start": 7,
+      "line_number_end": 13,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/preset_data_drift.mdx"
+    },
+    "rag_response": {
+      "answer": "To set up a report that compares your current data to a reference dataset, you can use Evidently's `Report` functionality with either the `DataDriftPreset` or `DataSummaryPreset`.\n\nHere's how you can do it:\n\n1.  **Using `DataDriftPreset`:**\n    *   This preset helps you evaluate shifts in data distribution between two datasets.\n    *   You need to provide both a `current` dataset and a `ref` (reference) dataset.\n    *   The report will identify drifting columns, show overall dataset drift, and can include tests for explicit pass/fail.\n    *   **Code Example:**\n        ```python\n        from evidently.report import Report\n        from evidently.metric_preset import DataDriftPreset\n\n        # Assuming current_data and reference_data are your datasets\n        report = Report(metrics=[DataDriftPreset()])\n        my_eval = report.run(current_data, reference_data)\n        my_eval.save_html(\"data_drift_report.html\")\n        ```\n\n2.  **Using `DataSummaryPreset`:**\n    *   This preset visualizes key descriptive statistics for your dataset(s) and each column.\n    *   When you provide two datasets (current and reference), it generates a side-by-side comparison.\n    *   You can also enable tests that are auto-generated based on the reference dataset for data quality checks.\n    *   **Code Example:**\n        ```python\n        from evidently.report import Report\n        from evidently.metric_preset import DataSummaryPreset\n\n        # Assuming current_data and reference_data are your datasets\n        report = Report(metrics=[DataSummaryPreset()])\n        my_eval = report.run(current_data, reference_data)\n        my_eval.save_html(\"data_summary_report.html\")\n        ```\n\n**Key Considerations:**\n*   **Data Requirements:** Both presets require you to prepare your data using [Data Definition](/docs/library/data_definition). For comparison, you need to provide both `current` and `ref` datasets.\n*   **Column Types:** While Evidently can auto-detect column types, it is recommended to specify them explicitly for better accuracy.\n*   **Customization:** Both presets offer customization options, such as selecting specific columns, changing drift detection parameters (for `DataDriftPreset`), or customizing test conditions.\n*   **Use Cases:** `DataDriftPreset` is useful for monitoring model performance without ground truth, debugging quality decay, or deciding on model retraining. `DataSummaryPreset` is helpful for exploratory data analysis, dataset comparison, and data quality checks in production.\n\nRefer to the documentation for `DataDriftPreset` and `DataSummaryPreset` for more details on their specific features and customization options.",
+      "references": [
+        {
+          "file_path": "metrics/preset_data_drift.mdx",
+          "explanation": "Provides detailed information on how to use the DataDriftPreset for comparing current data to a reference dataset, including code examples and use cases."
+        },
+        {
+          "file_path": "metrics/preset_data_summary.mdx",
+          "explanation": "Explains how to use the DataSummaryPreset for comparing datasets and generating reports, including code examples and data requirements."
+        },
+        {
+          "file_path": "metrics/explainer_drift.mdx",
+          "explanation": "Details the default data drift detection algorithm used by Evidently, which is relevant for understanding how the DataDriftPreset works."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is based directly on the provided documentation for DataDriftPreset and DataSummaryPreset, which clearly describe how to set up reports for comparing current and reference datasets.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I customize the drift detection parameters?",
+        "What are the specific data requirements for each preset?",
+        "Can I add other metrics or tests to these reports?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based solely on documentation",
+          "passed": true,
+          "explanation": "The answer exclusively uses information from the retrieved documents about DataDriftPreset and DataSummaryPreset."
+        },
+        {
+          "rule": "Answer is in the requested format",
+          "passed": true,
+          "explanation": "The answer is formatted as a how-to guide with code examples and explanations."
+        },
+        {
+          "rule": "No external information is included",
+          "passed": true,
+          "explanation": "No information outside of the provided documentation was used."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "compare data to reference dataset"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_summary.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_generate.mdx"
+        }
+      }
+    ],
+    "cost": 0.0034808000000000005
+  },
+  {
+    "input": {
+      "question": "How do I interpret the F Beta score?",
+      "reference_answer": "Higher F Beta at K values indicate better overall performance.",
+      "line_number_start": 55,
+      "line_number_end": 55,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/explainer_recsys.mdx"
+    },
+    "rag_response": {
+      "answer": "The F Beta score is a metric used in ranking and recommendation systems to evaluate performance. It combines precision and recall into a single value. The formula for F Beta is: \n\n$$F_{\\beta} = \\frac{(1 + \\beta^2) \\times \\text{Precision at K} \\times \\text{Recall at K}}{(\\beta^2 \\times \\text{Precision at K}) + \\text{Recall at K}}$$\n\nThe `Beta` parameter allows for weighting recall relative to precision. A `Beta` value greater than 1 gives more weight to recall, while a value less than 1 favors precision. When `Beta` is 1, it becomes the F1 score, which is the harmonic mean of precision and recall, providing a balanced estimation of both false positives and false negatives.\n\n**Interpretation**: \n*   The F Beta score ranges from 0 to 1.\n*   Higher F Beta scores indicate better overall performance of the recommendation or ranking system.",
+      "references": [
+        {
+          "file_path": "metrics/explainer_recsys.mdx",
+          "explanation": "The document provides a detailed explanation of the F Beta score, including its formula, the role of the Beta parameter, its range, and how to interpret higher values."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly derived from the provided documentation, which clearly defines the F Beta score, its formula, parameter interpretation, range, and performance interpretation.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "What is the formula for F Beta score?",
+        "How does the Beta parameter affect the F Beta score?",
+        "What is the range of the F Beta score?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer uses only documentation information",
+          "passed": true,
+          "explanation": "The answer is solely based on the content of metrics/explainer_recsys.mdx."
+        },
+        {
+          "rule": "Answer is faithful to the documentation",
+          "passed": true,
+          "explanation": "The answer accurately represents the information about the F Beta score as presented in the documentation."
+        },
+        {
+          "rule": "Answer addresses the user query",
+          "passed": true,
+          "explanation": "The answer directly explains how to interpret the F Beta score."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "interpret F Beta score"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_recsys.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explaper_drift.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "F Beta score interpretation"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_recsys.mdx"
+        }
+      }
+    ],
+    "cost": 0.0021409000000000003
+  },
+  {
+    "input": {
+      "question": "I need to classify responses into more than two categories. How?",
+      "reference_answer": "For more than two categories, use the `MulticlassClassificationPromptTemplate`. Define your categories and their definitions in the `category_criteria` dictionary. For example, to evaluate safety against a policy with 5 categories: `safety = MulticlassClassificationPromptTemplate(..., category_criteria = {\"1\" : \"Fully refuses or redirects...\", \"2\" : \"Avoids fulfilling...\", \"3\": \"Engages somewhat...\", \"4\": \"Includes prohibited content...\", \"5\": \"Directly fulfills...\"})`. Apply using `LLMEval`.",
+      "line_number_start": 324,
+      "line_number_end": 372,
+      "question_type": "frustrated_beginner",
+      "filename": "metrics/customize_llm_judge.mdx"
+    },
+    "rag_response": {
+      "answer": "To classify responses into more than two categories, you can use the `MulticlassClassificationPromptTemplate` in Evidently. This template allows you to define multiple categories and their criteria for classification. You can specify these categories and their definitions as a dictionary in the `category_criteria` parameter. This template can be used with the `LLMEval` descriptor to evaluate text data against these multiple categories. The example in the documentation shows how to evaluate brand policy alignment using 5 categories: \"Fully refuses or redirects the request in line with policy\", \"Avoids fulfilling the request, gives neutral or general info only\", \"Engages somewhat without overt violation\", \"Includes prohibited content but doesn\u2019t fully fulfill request\", and \"Directly fulfills the policy-violating request without hesitation\".",
+      "references": [
+        {
+          "file_path": "metrics/customize_llm_judge.mdx",
+          "explanation": "This document explains how to create custom LLM judges using templates. It specifically details the `MulticlassClassificationPromptTemplate` and provides an example of its usage for classifying responses into multiple categories based on defined criteria."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer directly addresses the user",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "Can you provide an example of setting up a multiclass classification for a different use case?",
+        "How do I specify the criteria for each category in the `MulticlassClassificationPromptTemplate`?",
+        "What are the limitations or best practices when defining categories for multiclass classification?"
+      ],
+      "checks": [
+        {
+          "rule": "All necessary information is present",
+          "passed": true,
+          "explanation": "The answer explains how to use `MulticlassClassificationPromptTemplate` and provides a relevant example from the documentation."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "classify responses into more than two categories"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "multiclass classification prompt template Evidently"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "Evidently multiclass classification"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      }
+    ],
+    "cost": 0.0154226
+  },
+  {
+    "input": {
+      "question": "count constant columns",
+      "reference_answer": "The `ConstantColumnsCount()` metric counts the number of columns that have identical values. This metric is at the dataset level.",
+      "line_number_start": 100,
+      "line_number_end": 100,
+      "question_type": "hurried_developer",
+      "filename": "metrics/all_metrics.mdx"
+    },
+    "rag_response": {
+      "answer": "To count constant columns, you need to use the `DataSummaryPreset`. This preset provides dataset statistics, including the number of columns and detailed column statistics. A constant column is one that has only a single unique value across all rows. While there isn't a direct function to *count* constant columns, you can identify them by examining the column statistics. For numerical, categorical, text, and datetime columns, the `DataSummaryPreset` will show relevant statistics and visualizations. By analyzing these, you can determine if a column is constant.\n\nFor more information on data definition and presets, refer to:\n- `Data Summary` preset overview: `metrics/preset_data_summary.mdx`\n- Data definition and mapping: `docs/library/data_definition.mdx`",
+      "references": [
+        {
+          "file_path": "metrics/preset_data_summary.mdx",
+          "explanation": "This document describes the `DataSummaryPreset`, which provides key descriptive statistics for a dataset and each column, allowing for the identification of constant columns by analyzing column statistics."
+        },
+        {
+          "file_path": "docs/library/data_definition.mdx",
+          "explanation": "This document explains how to define data, including column types, which is essential for accurate data analysis and the identification of constant columns when using presets like `DataSummaryPreset`."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 0.9,
+      "confidence_explanation": "The answer is based on information directly available in the provided documentation regarding data summarization and column analysis. While a specific function to count constant columns is not present, the documentation implies how they can be identified through existing tools.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I explicitly define column types to avoid misclassification?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer only uses documentation knowledge.",
+          "passed": true,
+          "explanation": "The answer is derived solely from the provided documentation snippets."
+        },
+        {
+          "rule": "No outside knowledge or assumptions.",
+          "passed": true,
+          "explanation": "The answer does not include information or make assumptions beyond what is present in the documentation."
+        },
+        {
+          "rule": "Answer is concise and directly addresses the user query.",
+          "passed": true,
+          "explanation": "The answer focuses on how to identify constant columns using the available tools and directly addresses the user's implied need to count them by explaining how to identify them."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "count constant columns"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_summary.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/data_definition.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "count constant columns"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_summary.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/data_definition.mdx"
+        }
+      }
+    ],
+    "cost": 0.0034789
+  },
+  {
+    "input": {
+      "question": "What's the easiest way to get a summary report of my evaluation results?",
+      "reference_answer": "The easiest way to get the Report is through `TextEvals` Preset.",
+      "line_number_start": 105,
+      "line_number_end": 105,
+      "question_type": "direct_inquirer",
+      "filename": "docs/library/descriptors.mdx"
+    },
+    "rag_response": {
+      "answer": "The easiest way to get a summary report of your evaluation results is to use the `Report` functionality. You can create a `Report` object and run it with a `DataSummaryPreset`. If you want to include tests, you can set `include_tests=True` when creating the `Report` object and provide a reference dataset. This preset provides descriptive statistics for the entire dataset and for each column, along with visualizations. It can also include a test suite if you provide a reference dataset, which can help in assessing data quality and stability.",
+      "references": [
+        {
+          "file_path": "docs/library/report.mdx",
+          "explanation": "This document explains how to generate Reports using Presets like DataSummaryPreset and how to run them on single or multiple datasets. It also covers custom report creation and comparison of results."
+        },
+        {
+          "file_path": "metrics/preset_data_summary.mdx",
+          "explanation": "This document provides an overview of the DataSummaryPreset, detailing its use cases, data requirements, and customization options. It also explains how the associated test suite works when a reference dataset is provided."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The documentation clearly describes how to generate reports using `Report` and `DataSummaryPreset`, which directly answers the user's question about the easiest way to get a summary report.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I customize the DataSummaryPreset?",
+        "What are the available presets for generating reports?",
+        "How can I export the report results?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer only based on documentation",
+          "passed": true,
+          "explanation": "The answer is synthesized directly from the information present in the retrieved documents regarding Evidently reports and DataSummaryPreset."
+        },
+        {
+          "rule": "Do not introduce outside knowledge or assumptions",
+          "passed": true,
+          "explanation": "The answer relies solely on the provided documentation and does not include any external information or assumptions."
+        },
+        {
+          "rule": "Prefer retrieving and analyzing full documents before producing the final answer",
+          "passed": true,
+          "explanation": "Both relevant documents, 'docs/library/report.mdx' and 'metrics/preset_data_summary.mdx', were retrieved and analyzed to synthesize the answer."
+        },
+        {
+          "rule": "Use only facts found in the documentation knowledge base",
+          "passed": true,
+          "explanation": "All information in the answer is derived from the documentation."
+        },
+        {
+          "rule": "If the answer cannot be found, clearly inform the user",
+          "passed": false,
+          "explanation": "A clear answer was found in the documentation."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "summary report evaluation results"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/library/report.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_summary.mdx"
+        }
+      }
+    ],
+    "cost": 0.0008724000000000002
+  },
+  {
+    "input": {
+      "question": "How do I create a custom LLM evaluator?",
+      "reference_answer": "You can create a custom LLM evaluator using the provided templates. Choose a template (binary or multi-class classification) and specify the evaluation criteria (grading logic and names of categories). Evidently will then generate the complete evaluation prompt to send to the selected LLM together with the evaluation data.",
+      "line_number_start": 178,
+      "line_number_end": 183,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/customize_llm_judge.mdx"
+    },
+    "rag_response": {
+      "answer": "To create a custom LLM evaluator in Evidently, you can use the `LLMEval` descriptor along with pre-defined templates like `BinaryClassificationPromptTemplate` or `MulticlassClassificationPromptTemplate`. These templates allow you to define specific criteria for evaluation. You will need to specify the `criteria` for your evaluation, along with the `target_category` and `non_target_category` (for binary classification) or a dictionary of `category_criteria` (for multi-class classification). You can also include pre-defined system messages using `pre_messages` and specify if reasoning should be included. The `LLMEval` descriptor can then be applied to your dataset, specifying the column to evaluate, the chosen template, the LLM provider and model, and an alias for the result. For multi-column evaluations, you can use the `additional_columns` parameter to map other columns to placeholders within your criteria.",
+      "references": [
+        {
+          "file_path": "examples/LLM_judge.mdx",
+          "explanation": "This document provides a comprehensive tutorial on creating and using LLM evaluators, including examples of defining custom prompts using templates for binary and multi-class classification."
+        },
+        {
+          "file_path": "metrics/customize_llm_judge.mdx",
+          "explanation": "This document details how to configure LLM judges using templates, covering both built-in evaluators and custom criteria setup with binary and multi-class classification templates. It also explains how to change the LLM provider/model and lists parameters for `LLMEval` and the prompt templates."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly synthesized from the provided documentation on creating custom LLM judges and using templates.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How do I configure the LLM provider and model for a custom evaluator?",
+        "What are the available templates for LLM evaluation?",
+        "How can I evaluate multiple columns using a custom LLM evaluator?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based only on documentation",
+          "passed": true,
+          "explanation": "The answer is derived solely from the content of the provided documentation files."
+        },
+        {
+          "rule": "Answer is formatted in markdown",
+          "passed": true,
+          "explanation": "The answer uses markdown formatting for readability."
+        },
+        {
+          "rule": "Answer is not overly verbose",
+          "passed": true,
+          "explanation": "The answer is concise and directly addresses the user's question."
+        },
+        {
+          "rule": "Answer includes references",
+          "passed": true,
+          "explanation": "References to relevant documentation files are included with explanations."
+        },
+        {
+          "rule": "Answer suggests follow-up questions",
+          "passed": true,
+          "explanation": "Relevant follow-up questions are provided to assist the user further."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "create custom LLM evaluator"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_metric.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "create custom LLM evaluator"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_metric.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "LLM evaluator templates"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "custom LLM evaluator using templates"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_judge.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_llm_judge.mdx"
+        }
+      }
+    ],
+    "cost": 0.022850800000000004
+  },
+  {
+    "input": {
+      "question": "How do I exclude columns with embeddings when using presets like DataDriftPreset?",
+      "reference_answer": "To exclude columns with embeddings when using presets, you can set `embeddings = []`.",
+      "line_number_start": 73,
+      "line_number_end": 74,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/customize_embedding_drift.mdx"
+    },
+    "rag_response": {
+      "answer": "To exclude columns with embeddings when using presets like `DataDriftPreset`, you can specify an empty list for the `embeddings` parameter within the preset configuration. This tells the preset to not process any columns containing embeddings.\n\nFor example:\n```python\nfrom evidently.report import Report\nfrom evidently.metric_preset import DataDriftPreset\n\nreport = Report(presets=[\n    DataDriftPreset(embeddings=[])\n])\n```\n\nThis configuration ensures that columns with embeddings are explicitly excluded from the analysis performed by `DataDriftPreset`.",
+      "references": [
+        {
+          "file_path": "metrics/customize_embedding_drift.mdx",
+          "explanation": "This document explains how to customize embedding drift detection within Evidently presets, including how to specify which embedding columns to include or exclude by using the `embeddings` parameter. It explicitly states that setting `embeddings = []` will exclude columns with embeddings."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly supported by the documentation for `customize_embedding_drift.mdx`, which clearly outlines how to use the `embeddings` parameter to exclude embedding columns from presets like `DataDriftPreset`.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How can I specify which embedding columns to include?",
+        "What are the different drift detection methods available for embeddings?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer contains only information from the provided documentation",
+          "passed": true,
+          "explanation": "The answer is based solely on the information found in the `customize_embedding_drift.mdx` document."
+        },
+        {
+          "rule": "Answer is well-formatted and uses markdown",
+          "passed": true,
+          "explanation": "The answer is formatted using markdown, including code blocks for clarity."
+        },
+        {
+          "rule": "Answer directly addresses the user's question",
+          "passed": true,
+          "explanation": "The answer directly explains how to exclude embedding columns from `DataDriftPreset` by using the `embeddings` parameter."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "exclude columns embeddings DataDriftPreset"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_embedding_drift.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "exclude columns embeddings DataDriftPreset"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_embedding_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_embedding_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/preset_data_drift.mdx"
+        }
+      }
+    ],
+    "cost": 0.0055195
+  }
+]

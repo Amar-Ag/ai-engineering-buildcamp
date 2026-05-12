@@ -1,0 +1,21 @@
+question,category,type
+What are the main spices in Chicken Tikka Masala?,factual,basic
+How do you marinate the chicken for Chicken Tikka Masala?,how-to,instructional
+What is the cooking time for the sauce before adding the cream and chicken?,detail,clarification
+What can I use instead of heavy cream if I'm dairy-free?,substitution,ingredient-advice
+How does Chicken Tikka Masala differ from Butter Chicken?,comparison,dish_comparison
+What is the baking temperature for chocolate lava cake?,factual,factual
+How do I achieve the 'lava' effect in the cake?,how-to,how-to
+What kind of chocolate is best for this recipe?,detail,detail
+Can I use milk chocolate instead of dark chocolate?,substitution,substitution
+How does chocolate lava cake compare to a regular chocolate cake?,comparison,comparison
+What are the main ingredients in Miso Soup?,factual,recipe
+How do you make Miso Soup?,how-to,recipe
+What kind of tofu is used in Miso Soup?,detail,recipe
+Can I use regular miso paste instead of white miso paste?,substitution,recipe
+How does Miso Soup compare to Tonkotsu Ramen?,comparison,recipe
+What cut of lamb is used in this recipe?,factual,single_choice
+How do you prepare the lamb for the shawarma bowl?,how_to,single_choice
+What are the specific measurements for the tahini sauce ingredients?,detail,single_choice
+What can be used instead of tahini sauce?,substitution,single_choice
+How does a lamb shawarma bowl differ from a chicken shawarma wrap?,comparison,single_choice

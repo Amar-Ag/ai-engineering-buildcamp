@@ -1,0 +1,23 @@
+question,category,type
+How do I make spaghetti carbonara?,specific-recipe,direct
+What can I cook with chicken and coconut milk?,ingredient-search,ingredient-based
+I want something easy and healthy for dinner,preference,vague
+How do I make sushi?,missing-recipe,not-in-collection
+What temperature should I set my oven to for the lava cake?,recipe-detail,specific
+How do I make pasta carbonara?,different-phrasing,direct
+What Italian dishes do you have?,different-phrasing,browse
+Can I use bacon instead of guanciale in carbonara?,substitution,not-in-data
+What's the calorie count for the margherita pizza?,missing-info,not-in-data
+How do I make ramen?,missing-recipe,not-in-collection
+What's the best restaurant in town?,out-of-scope,off-topic
+Can I make the falafel with canned chickpeas?,edge-case,specific
+Can I substitute almond milk in the pancakes?,substitution,not-in-data
+What can I make for a vegan dinner?,dietary,preference
+What's easier to make, sushi or falafel?,comparison,specific
+Can I make tikka masala without cream?,substitution,not-in-data
+I want something spicy for dinner,preference,vague
+What Mexican dishes do you have?,browse,cuisine-based
+How do I store leftover pad thai?,missing-info,not-in-data
+What ingredients do I need for the chocolate lava cake?,recipe-detail,specific
+Is there a gluten-free option in your recipes?,dietary,browse
+Can I substitute almond milk in the pancakes?,substitution,not-in-data

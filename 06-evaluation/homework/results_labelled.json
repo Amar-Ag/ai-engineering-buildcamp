@@ -1,0 +1,310 @@
+[
+  {
+    "question": "How do I make spaghetti carbonara?",
+    "category": "specific-recipe",
+    "type": "direct",
+    "output": "To make Spaghetti Carbonara, follow these instructions:\n\n1.  Cook spaghetti in salted water.\n2.  Crisp guanciale in a pan.\n3.  Whisk egg yolks with grated pecorino and black pepper.\n4.  Drain pasta, reserving some water.\n5.  Toss hot pasta with guanciale, then quickly stir in egg mixture off heat.\n6.  Add pasta water as needed for a creamy sauce.\n7.  Serve immediately with extra pecorino.",
+    "execution_time": 2.79,
+    "tokens": {
+      "input_tokens": 1218,
+      "output_tokens": 236,
+      "total_tokens": 1454
+    },
+    "cost": 0.000955,
+    "label": "good"
+  },
+  {
+    "question": "What can I cook with chicken and coconut milk?",
+    "category": "ingredient-search",
+    "type": "ingredient-based",
+    "output": "You can make Thai Green Curry. It takes 20 minutes to prep and 25 minutes to cook, serves 4 people, and includes chicken thigh, coconut milk, green curry paste, bamboo shoots, Thai basil, fish sauce, palm sugar, eggplant, bell pepper, and jasmine rice.",
+    "execution_time": 2.28,
+    "tokens": {
+      "input_tokens": 823,
+      "output_tokens": 242,
+      "total_tokens": 1065
+    },
+    "cost": 0.000852,
+    "label": "good"
+  },
+  {
+    "question": "I want something easy and healthy for dinner",
+    "category": "preference",
+    "type": "vague",
+    "output": "I found a few options for you:\n\n*   **Vegetable Stir Fry** (easy, healthy): This Chinese dish takes 15 minutes to prep and 10 minutes to cook, serving 3. It contains broccoli, bell pepper, carrot, snap peas, soy sauce, sesame oil, garlic, ginger, cornstarch, and rice.\n*   **Greek Salad** (easy, healthy): This Greek salad takes only 10 minutes to prep and requires no cooking, serving 4. It contains cucumber, tomato, red onion, Kalamata olives, feta cheese, olive oil, oregano, and red wine vinegar.\n\nWould you like the full recipe for either of these?",
+    "execution_time": 3.07,
+    "tokens": {
+      "input_tokens": 813,
+      "output_tokens": 339,
+      "total_tokens": 1152
+    },
+    "cost": 0.001091,
+    "label": "good"
+  },
+  {
+    "question": "How do I make sushi?",
+    "category": "missing-recipe",
+    "type": "not-in-collection",
+    "output": "I don't have a recipe for sushi in my collection.",
+    "execution_time": 1.79,
+    "tokens": {
+      "input_tokens": 587,
+      "output_tokens": 121,
+      "total_tokens": 708
+    },
+    "cost": 0.000479,
+    "label": "good"
+  },
+  {
+    "question": "What temperature should I set my oven to for the lava cake?",
+    "category": "recipe-detail",
+    "type": "specific",
+    "output": "Set your oven to 425\u00b0F for the Chocolate Lava Cake.",
+    "execution_time": 3.25,
+    "tokens": {
+      "input_tokens": 1230,
+      "output_tokens": 200,
+      "total_tokens": 1430
+    },
+    "cost": 0.000869,
+    "label": "good"
+  },
+  {
+    "question": "How do I make pasta carbonara?",
+    "category": "different-phrasing",
+    "type": "direct",
+    "output": "To make Spaghetti Carbonara, follow these steps:\n\n**Ingredients:**\n*   Spaghetti\n*   Guanciale\n*   Egg yolks\n*   Pecorino Romano\n*   Black pepper\n*   Salt\n\n**Instructions:**\n1.  Cook spaghetti in salted water.\n2.  Crisp guanciale in a pan.\n3.  Whisk egg yolks with grated pecorino and black pepper.\n4.  Drain pasta, reserving some water.\n5.  Toss hot pasta with guanciale, then quickly stir in egg mixture off heat.\n6.  Add pasta water as needed for a creamy sauce.\n7.  Serve immediately with extra pecorino.",
+    "execution_time": 3.31,
+    "tokens": {
+      "input_tokens": 1216,
+      "output_tokens": 284,
+      "total_tokens": 1500
+    },
+    "cost": 0.001075,
+    "label": "good"
+  },
+  {
+    "question": "What Italian dishes do you have?",
+    "category": "different-phrasing",
+    "type": "browse",
+    "output": "I have a few Italian dishes:\n\n*   **Classic Margherita Pizza** (ID: 1) - Prep: 20min, Cook: 15min, Serves: 4. Ingredients: pizza dough, San Marzano tomatoes, fresh mozzarella, fresh basil, olive oil, salt. Tags: vegetarian, classic.\n*   **Spaghetti Carbonara** (ID: 6) - Prep: 10min, Cook: 20min, Serves: 4. Ingredients: spaghetti, guanciale, egg yolks, pecorino romano, black pepper, salt. Tags: classic, pasta.\n*   **Mushroom Risotto** (ID: 13) - Prep: 10min, Cook: 35min, Serves: 4. Ingredients: arborio rice, mixed mushrooms, onion, garlic, white wine, vegetable broth, parmesan cheese, butter, olive oil, thyme. Tags: vegetarian, comfort-food.",
+    "execution_time": 2.39,
+    "tokens": {
+      "input_tokens": 796,
+      "output_tokens": 314,
+      "total_tokens": 1110
+    },
+    "cost": 0.001024,
+    "label": "good"
+  },
+  {
+    "question": "Can I use bacon instead of guanciale in carbonara?",
+    "category": "substitution",
+    "type": "not-in-data",
+    "output": "The recipe I have for Spaghetti Carbonara uses guanciale. It does not mention bacon or suggest it as a substitute.",
+    "execution_time": 3.4,
+    "tokens": {
+      "input_tokens": 1229,
+      "output_tokens": 275,
+      "total_tokens": 1504
+    },
+    "cost": 0.001056,
+    "label": "good"
+  },
+  {
+    "question": "What's the calorie count for the margherita pizza?",
+    "category": "missing-info",
+    "type": "not-in-data",
+    "output": "I don't have the calorie count information for the Classic Margherita Pizza in my database.",
+    "execution_time": 2.99,
+    "tokens": {
+      "input_tokens": 1218,
+      "output_tokens": 225,
+      "total_tokens": 1443
+    },
+    "cost": 0.000928,
+    "label": "good"
+  },
+  {
+    "question": "How do I make ramen?",
+    "category": "missing-recipe",
+    "type": "not-in-collection",
+    "output": "I don't have a recipe for ramen in my collection. Is there something else I can help you with?",
+    "execution_time": 1.67,
+    "tokens": {
+      "input_tokens": 587,
+      "output_tokens": 144,
+      "total_tokens": 731
+    },
+    "cost": 0.000536,
+    "label": "good"
+  },
+  {
+    "question": "What's the best restaurant in town?",
+    "category": "out-of-scope",
+    "type": "off-topic",
+    "output": "I can only provide information about recipes, not restaurants. Is there a recipe I can help you find?",
+    "execution_time": 0.91,
+    "tokens": {
+      "input_tokens": 277,
+      "output_tokens": 93,
+      "total_tokens": 370
+    },
+    "cost": 0.000316,
+    "label": "good"
+  },
+  {
+    "question": "Can I make the falafel with canned chickpeas?",
+    "category": "edge-case",
+    "type": "specific",
+    "output": "This Falafel Wrap recipe specifically states \"Soak dried chickpeas overnight (do not use canned).\" So, you cannot make this falafel with canned chickpeas.",
+    "execution_time": 2.93,
+    "tokens": {
+      "input_tokens": 1294,
+      "output_tokens": 247,
+      "total_tokens": 1541
+    },
+    "cost": 0.001006,
+    "label": "good"
+  },
+  {
+    "question": "Can I substitute almond milk in the pancakes?",
+    "category": "substitution",
+    "type": "not-in-data",
+    "output": "The Banana Pancakes recipe simply lists \"milk\" as an ingredient and does not specify if almond milk can be substituted.",
+    "execution_time": 3.63,
+    "tokens": {
+      "input_tokens": 1234,
+      "output_tokens": 274,
+      "total_tokens": 1508
+    },
+    "cost": 0.001055,
+    "label": "good"
+  },
+  {
+    "question": "What can I make for a vegan dinner?",
+    "category": "dietary",
+    "type": "preference",
+    "output": "Here are some vegan dinner options:\n\n*   **Vegetable Stir Fry** (Chinese, easy)\n    *   Prep: 15min, Cook: 10min, Serves: 3\n    *   Ingredients: broccoli, bell pepper, carrot, snap peas, soy sauce, sesame oil, garlic, ginger, cornstarch, rice\n*   **Falafel Wrap** (Middle Eastern, medium)\n    *   Prep: 30min, Cook: 15min, Serves: 4\n    *   Ingredients: chickpeas, onion, garlic, parsley, cilantro, cumin, coriander, flour, baking powder, pita bread, tahini, lettuce, tomato, pickles\n*   **Miso Soup** (Japanese, easy) - *vegan-adaptable*\n    *   Prep: 5min, Cook: 10min, Serves: 4\n    *   Ingredients: dashi stock, white miso paste, silken tofu, wakame seaweed, green onion",
+    "execution_time": 2.8,
+    "tokens": {
+      "input_tokens": 819,
+      "output_tokens": 335,
+      "total_tokens": 1154
+    },
+    "cost": 0.001083,
+    "label": "good"
+  },
+  {
+    "question": "What's easier to make",
+    "category": " sushi or falafel?",
+    "type": "comparison",
+    "output": "I only have one dessert recipe, Chocolate Lava Cake, which is categorized as hard. I don't have enough information to determine what's easier to make from my current recipe collection.",
+    "execution_time": 5.62,
+    "tokens": {
+      "input_tokens": 994,
+      "output_tokens": 629,
+      "total_tokens": 1623
+    },
+    "cost": 0.001871,
+    "label": "bad"
+  },
+  {
+    "question": "Can I make tikka masala without cream?",
+    "category": "substitution",
+    "type": "not-in-data",
+    "output": "The Chicken Tikka Masala recipe I have uses heavy cream. I don't have a recipe for Tikka Masala without cream.",
+    "execution_time": 2.11,
+    "tokens": {
+      "input_tokens": 664,
+      "output_tokens": 194,
+      "total_tokens": 858
+    },
+    "cost": 0.000684,
+    "label": "good"
+  },
+  {
+    "question": "I want something spicy for dinner",
+    "category": "preference",
+    "type": "vague",
+    "output": "I found two spicy recipes for you:\n\n*   **Thai Green Curry** (Thai, medium)\n    Prep: 20min, Cook: 25min, Serves: 4\n    Ingredients: chicken thigh, coconut milk, green curry paste, bamboo shoots, Thai basil, fish sauce, palm sugar, eggplant, bell pepper, jasmine rice\n    Tags: spicy, coconut\n*   **Chicken Tikka Masala** (Indian, medium)\n    Prep: 30min, Cook: 40min, Serves: 4\n    Ingredients: chicken breast, yogurt, garam masala, turmeric, cumin, tomato sauce, heavy cream, garlic, ginger, onion, cilantro, rice\n    Tags: protein-rich, spicy",
+    "execution_time": 2.32,
+    "tokens": {
+      "input_tokens": 735,
+      "output_tokens": 235,
+      "total_tokens": 970
+    },
+    "cost": 0.000808,
+    "label": "good"
+  },
+  {
+    "question": "What Mexican dishes do you have?",
+    "category": "browse",
+    "type": "cuisine-based",
+    "output": "I don't have any Mexican dishes in my recipe collection.",
+    "execution_time": 1.56,
+    "tokens": {
+      "input_tokens": 593,
+      "output_tokens": 109,
+      "total_tokens": 702
+    },
+    "cost": 0.00045,
+    "label": "bad"
+  },
+  {
+    "question": "How do I store leftover pad thai?",
+    "category": "missing-info",
+    "type": "not-in-data",
+    "output": "I don't have a recipe for Pad Thai in my collection, so I can't give you specific instructions on how to store it.",
+    "execution_time": 1.88,
+    "tokens": {
+      "input_tokens": 659,
+      "output_tokens": 169,
+      "total_tokens": 828
+    },
+    "cost": 0.00062,
+    "label": "good"
+  },
+  {
+    "question": "What ingredients do I need for the chocolate lava cake?",
+    "category": "recipe-detail",
+    "type": "specific",
+    "output": "You will need:\n\n*   dark chocolate\n*   butter\n*   eggs\n*   sugar\n*   flour\n*   vanilla extract\n*   powdered sugar",
+    "execution_time": 2.68,
+    "tokens": {
+      "input_tokens": 1226,
+      "output_tokens": 194,
+      "total_tokens": 1420
+    },
+    "cost": 0.000853,
+    "label": "good"
+  },
+  {
+    "question": "Is there a gluten-free option in your recipes?",
+    "category": "dietary",
+    "type": "browse",
+    "output": "I'm sorry, I don't have any gluten-free recipes in my collection at the moment.",
+    "execution_time": 1.54,
+    "tokens": {
+      "input_tokens": 598,
+      "output_tokens": 94,
+      "total_tokens": 692
+    },
+    "cost": 0.000414,
+    "label": "good"
+  },
+  {
+    "question": "Can I substitute almond milk in the pancakes?",
+    "category": "substitution",
+    "type": "not-in-data",
+    "output": "The Banana Pancakes recipe lists milk as an ingredient but doesn't specify if almond milk can be substituted.",
+    "execution_time": 4.53,
+    "tokens": {
+      "input_tokens": 1234,
+      "output_tokens": 265,
+      "total_tokens": 1499
+    },
+    "cost": 0.001033,
+    "label": "good"
+  }
+]

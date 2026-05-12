@@ -1,0 +1,262 @@
+[
+  {
+    "question": "What are the main spices in Chicken Tikka Masala?",
+    "category": "factual",
+    "type": "basic",
+    "output": "The main spices in Chicken Tikka Masala are garam masala, turmeric, and cumin.",
+    "execution_time": 1.85,
+    "tokens": {
+      "input_tokens": 750,
+      "output_tokens": 147,
+      "total_tokens": 897
+    },
+    "cost": 0.000592
+  },
+  {
+    "question": "How do you marinate the chicken for Chicken Tikka Masala?",
+    "category": "how-to",
+    "type": "instructional",
+    "output": "To marinate the chicken for Chicken Tikka Masala, you should marinate it in yogurt, garam masala, turmeric, and cumin for at least 1 hour.",
+    "execution_time": 2.61,
+    "tokens": {
+      "input_tokens": 1448,
+      "output_tokens": 212,
+      "total_tokens": 1660
+    },
+    "cost": 0.000964
+  },
+  {
+    "question": "What is the cooking time for the sauce before adding the cream and chicken?",
+    "category": "detail",
+    "type": "clarification",
+    "output": "For Chicken Tikka Masala, the sauce simmers for 15 minutes before adding the cream and cooked chicken.",
+    "execution_time": 3.93,
+    "tokens": {
+      "input_tokens": 1599,
+      "output_tokens": 440,
+      "total_tokens": 2039
+    },
+    "cost": 0.00158
+  },
+  {
+    "question": "What can I use instead of heavy cream if I'm dairy-free?",
+    "category": "substitution",
+    "type": "ingredient-advice",
+    "output": "I can't provide specific ingredient substitutions. My purpose is to find and display recipes. If you'd like, I can search for dairy-free recipes for you.",
+    "execution_time": 1.52,
+    "tokens": {
+      "input_tokens": 284,
+      "output_tokens": 176,
+      "total_tokens": 460
+    },
+    "cost": 0.000525
+  },
+  {
+    "question": "How does Chicken Tikka Masala differ from Butter Chicken?",
+    "category": "comparison",
+    "type": "dish_comparison",
+    "output": "I do not have a recipe for Butter Chicken in my collection. Therefore, I cannot provide a comparison based on my available data. I do have a recipe for Chicken Tikka Masala if you'd like to know more about that.",
+    "execution_time": 2.9,
+    "tokens": {
+      "input_tokens": 1479,
+      "output_tokens": 274,
+      "total_tokens": 1753
+    },
+    "cost": 0.001129
+  },
+  {
+    "question": "What is the baking temperature for chocolate lava cake?",
+    "category": "factual",
+    "type": "factual",
+    "output": "The baking temperature for chocolate lava cake is 425\u00b0F.",
+    "execution_time": 2.39,
+    "tokens": {
+      "input_tokens": 1223,
+      "output_tokens": 179,
+      "total_tokens": 1402
+    },
+    "cost": 0.000814
+  },
+  {
+    "question": "How do I achieve the 'lava' effect in the cake?",
+    "category": "how-to",
+    "type": "how-to",
+    "output": "To achieve the 'lava' effect in the Chocolate Lava Cake, you need to bake it at 425\u00b0F for exactly 12-14 minutes. The edges should be firm, but the center should remain soft, creating the molten \"lava\" effect.",
+    "execution_time": 3.54,
+    "tokens": {
+      "input_tokens": 1230,
+      "output_tokens": 358,
+      "total_tokens": 1588
+    },
+    "cost": 0.001264
+  },
+  {
+    "question": "What kind of chocolate is best for this recipe?",
+    "category": "detail",
+    "type": "detail",
+    "output": "The recipe for Chocolate Lava Cake calls for dark chocolate.",
+    "execution_time": 3.91,
+    "tokens": {
+      "input_tokens": 1219,
+      "output_tokens": 497,
+      "total_tokens": 1716
+    },
+    "cost": 0.001608
+  },
+  {
+    "question": "Can I use milk chocolate instead of dark chocolate?",
+    "category": "substitution",
+    "type": "substitution",
+    "output": "I can only provide information from the recipe collection. I don't have information on general ingredient substitutions.",
+    "execution_time": 1.84,
+    "tokens": {
+      "input_tokens": 278,
+      "output_tokens": 148,
+      "total_tokens": 426
+    },
+    "cost": 0.000453
+  },
+  {
+    "question": "How does chocolate lava cake compare to a regular chocolate cake?",
+    "category": "comparison",
+    "type": "comparison",
+    "output": "Chocolate lava cake is a rich dessert characterized by a firm exterior and a molten, gooey chocolate center. It is made with dark chocolate, butter, eggs, sugar, flour, and vanilla extract, and baked quickly at a high temperature to achieve its signature \"lava\" effect.\n\nI do not have a recipe for a \"regular chocolate cake\" in my collection, so I cannot provide a direct comparison.",
+    "execution_time": 13.57,
+    "tokens": {
+      "input_tokens": 1792,
+      "output_tokens": 508,
+      "total_tokens": 2300
+    },
+    "cost": 0.001808
+  },
+  {
+    "question": "What are the main ingredients in Miso Soup?",
+    "category": "factual",
+    "type": "recipe",
+    "output": "The main ingredients in Miso Soup are dashi stock, white miso paste, silken tofu, wakame seaweed, and green onion.",
+    "execution_time": 2.17,
+    "tokens": {
+      "input_tokens": 660,
+      "output_tokens": 154,
+      "total_tokens": 814
+    },
+    "cost": 0.000583
+  },
+  {
+    "question": "How do you make Miso Soup?",
+    "category": "how-to",
+    "type": "recipe",
+    "output": "To make Miso Soup, follow these instructions:\n\n**Ingredients:**\n* dashi stock\n* white miso paste\n* silken tofu\n* wakame seaweed\n* green onion\n\n**Instructions:**\n1. Bring dashi stock to a gentle simmer.\n2. Add cubed tofu and rehydrated wakame.\n3. Ladle some broth into a bowl, dissolve miso paste in it, then pour back into pot.\n4. Do not boil after adding miso.\n5. Serve topped with sliced green onion.",
+    "execution_time": 3.32,
+    "tokens": {
+      "input_tokens": 1219,
+      "output_tokens": 271,
+      "total_tokens": 1490
+    },
+    "cost": 0.001043
+  },
+  {
+    "question": "What kind of tofu is used in Miso Soup?",
+    "category": "detail",
+    "type": "recipe",
+    "output": "Miso soup typically uses silken tofu.",
+    "execution_time": 1.75,
+    "tokens": {
+      "input_tokens": 662,
+      "output_tokens": 110,
+      "total_tokens": 772
+    },
+    "cost": 0.000474
+  },
+  {
+    "question": "Can I use regular miso paste instead of white miso paste?",
+    "category": "substitution",
+    "type": "recipe",
+    "output": "The Miso Soup recipe I found specifically calls for white miso paste. I don't have any information in my recipe collection about substituting regular miso paste for white miso paste.",
+    "execution_time": 8.03,
+    "tokens": {
+      "input_tokens": 1533,
+      "output_tokens": 1258,
+      "total_tokens": 2791
+    },
+    "cost": 0.003605
+  },
+  {
+    "question": "How does Miso Soup compare to Tonkotsu Ramen?",
+    "category": "comparison",
+    "type": "recipe",
+    "output": "I don't have a recipe for Tonkotsu Ramen, so I'm unable to compare it to Miso Soup. I can tell you that Miso Soup is a Japanese soup that is easy to make and features dashi stock, white miso paste, silken tofu, wakame seaweed, and green onion. It's often considered a quick, healthy, and vegan-adaptable dish.",
+    "execution_time": 2.68,
+    "tokens": {
+      "input_tokens": 703,
+      "output_tokens": 266,
+      "total_tokens": 969
+    },
+    "cost": 0.000876
+  },
+  {
+    "question": "What cut of lamb is used in this recipe?",
+    "category": "factual",
+    "type": "single_choice",
+    "output": "The Lamb Shawarma Bowl recipe uses lamb leg.",
+    "execution_time": 2.6,
+    "tokens": {
+      "input_tokens": 670,
+      "output_tokens": 282,
+      "total_tokens": 952
+    },
+    "cost": 0.000906
+  },
+  {
+    "question": "How do you prepare the lamb for the shawarma bowl?",
+    "category": "how_to",
+    "type": "single_choice",
+    "output": "To prepare the lamb for the Shawarma Bowl, you should:\n\n1.  Slice the lamb thinly.\n2.  Marinate it with cumin, coriander, paprika, turmeric, garlic, and lemon juice for at least 30 minutes.\n3.  Cook the lamb in a hot skillet until it's browned and cooked through.",
+    "execution_time": 2.93,
+    "tokens": {
+      "input_tokens": 1611,
+      "output_tokens": 282,
+      "total_tokens": 1893
+    },
+    "cost": 0.001188
+  },
+  {
+    "question": "What are the specific measurements for the tahini sauce ingredients?",
+    "category": "detail",
+    "type": "single_choice",
+    "output": "I'm sorry, I don't have the specific measurements for tahini sauce ingredients in the recipes I have. The recipes mention using tahini sauce but do not provide the exact ingredient quantities for making it.",
+    "execution_time": 4.05,
+    "tokens": {
+      "input_tokens": 2671,
+      "output_tokens": 401,
+      "total_tokens": 3072
+    },
+    "cost": 0.001804
+  },
+  {
+    "question": "What can be used instead of tahini sauce?",
+    "category": "substitution",
+    "type": "single_choice",
+    "output": "I don't have information on what can be used as a substitute for tahini sauce in my current recipe collection.",
+    "execution_time": 4.64,
+    "tokens": {
+      "input_tokens": 2663,
+      "output_tokens": 518,
+      "total_tokens": 3181
+    },
+    "cost": 0.002094
+  },
+  {
+    "question": "How does a lamb shawarma bowl differ from a chicken shawarma wrap?",
+    "category": "comparison",
+    "type": "single_choice",
+    "output": "I don't have a recipe for a chicken shawarma wrap in my collection, so I can't tell you how it differs from a lamb shawarma bowl. However, I do have a recipe for a Lamb Shawarma Bowl if you'd like to know more about that!",
+    "execution_time": 4.57,
+    "tokens": {
+      "input_tokens": 1104,
+      "output_tokens": 614,
+      "total_tokens": 1718
+    },
+    "cost": 0.001866
+  }
+]

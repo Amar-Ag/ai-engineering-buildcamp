@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What are the main spices in Chicken Tikka Masala?",
+    "category": "factual",
+    "type": "basic",
+    "output": "The main spices in Chicken Tikka Masala are garam masala, turmeric, and cumin.",
+    "execution_time": 1.85,
+    "tokens": {
+      "input_tokens": 750,
+      "output_tokens": 147,
+      "total_tokens": 897
+    },
+    "cost": 0.000592,
+    "judge_label": "good",
+    "judge_reasoning": "The agent accurately answers the question about the main spices in Chicken Tikka Masala. The spices listed (garam masala, turmeric, and cumin) are indeed common and main spices for this dish, making the information factually correct and highly likely to be found in a relevant recipe collection."
+  },
+  {
+    "question": "How do you marinate the chicken for Chicken Tikka Masala?",
+    "category": "how-to",
+    "type": "instructional",
+    "output": "To marinate the chicken for Chicken Tikka Masala, you should marinate it in yogurt, garam masala, turmeric, and cumin for at least 1 hour.",
+    "execution_time": 2.61,
+    "tokens": {
+      "input_tokens": 1448,
+      "output_tokens": 212,
+      "total_tokens": 1660
+    },
+    "cost": 0.000964,
+    "judge_label": "good",
+    "judge_reasoning": "The agent provides a direct and plausible answer to the question about how to marinate chicken for Chicken Tikka Masala, listing common ingredients and a reasonable marination time. Assuming this information is accurately pulled from the agent's recipe collection, the response is good as it directly answers the user's query without being out of scope, hallucinating, or providing invented advice."
+  },
+  {
+    "question": "What is the cooking time for the sauce before adding the cream and chicken?",
+    "category": "detail",
+    "type": "clarification",
+    "output": "For Chicken Tikka Masala, the sauce simmers for 15 minutes before adding the cream and cooked chicken.",
+    "execution_time": 3.93,
+    "tokens": {
+      "input_tokens": 1599,
+      "output_tokens": 440,
+      "total_tokens": 2039
+    },
+    "cost": 0.00158,
+    "judge_label": "good",
+    "judge_reasoning": "The agent directly answers the specific cooking time question for a named dish, aligning with the criteria for a good response as it provides accurate-looking information relevant to the query. Without access to the recipe collection, I must assume the information is accurate and not hallucinated."
+  },
+  {
+    "question": "What can I use instead of heavy cream if I'm dairy-free?",
+    "category": "substitution",
+    "type": "ingredient-advice",
+    "output": "I can't provide specific ingredient substitutions. My purpose is to find and display recipes. If you'd like, I can search for dairy-free recipes for you.",
+    "execution_time": 1.52,
+    "tokens": {
+      "input_tokens": 284,
+      "output_tokens": 176,
+      "total_tokens": 460
+    },
+    "cost": 0.000525,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identifies that it cannot provide ingredient substitutions, which is a type of cooking advice. It then offers to search for recipes within its capabilities (dairy-free recipes). This demonstrates a correct understanding of its scope and limitations without hallucinating or giving incorrect information."
+  },
+  {
+    "question": "How does Chicken Tikka Masala differ from Butter Chicken?",
+    "category": "comparison",
+    "type": "dish_comparison",
+    "output": "I do not have a recipe for Butter Chicken in my collection. Therefore, I cannot provide a comparison based on my available data. I do have a recipe for Chicken Tikka Masala if you'd like to know more about that.",
+    "execution_time": 2.9,
+    "tokens": {
+      "input_tokens": 1479,
+      "output_tokens": 274,
+      "total_tokens": 1753
+    },
+    "cost": 0.001129,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identifies that it does not have a recipe for Butter Chicken and thus cannot provide a comparison. It also offers information on Chicken Tikka Masala, which it claims to have. It does not hallucinate or provide incorrect information."
+  },
+  {
+    "question": "What is the baking temperature for chocolate lava cake?",
+    "category": "factual",
+    "type": "factual",
+    "output": "The baking temperature for chocolate lava cake is 425\u00b0F.",
+    "execution_time": 2.39,
+    "tokens": {
+      "input_tokens": 1223,
+      "output_tokens": 179,
+      "total_tokens": 1402
+    },
+    "cost": 0.000814,
+    "judge_label": "good",
+    "judge_reasoning": "The agent directly answers the question with a specific baking temperature, which is plausible for a chocolate lava cake. Assuming this information was accurately retrieved from its internal recipe collection, the response is good as it is precise and directly addresses the user's query without inventing information or going out of scope."
+  },
+  {
+    "question": "How do I achieve the 'lava' effect in the cake?",
+    "category": "how-to",
+    "type": "how-to",
+    "output": "To achieve the 'lava' effect in the Chocolate Lava Cake, you need to bake it at 425\u00b0F for exactly 12-14 minutes. The edges should be firm, but the center should remain soft, creating the molten \"lava\" effect.",
+    "execution_time": 3.54,
+    "tokens": {
+      "input_tokens": 1230,
+      "output_tokens": 358,
+      "total_tokens": 1588
+    },
+    "cost": 0.001264,
+    "judge_label": "good",
+    "judge_reasoning": "The agent accurately answers how to achieve the lava effect in a cake by providing specific baking instructions (temperature and time) and explaining the desired consistency (firm edges, soft center). This directly addresses the user's cooking question, assuming these details are drawn from a relevant recipe in its collection."
+  },
+  {
+    "question": "What kind of chocolate is best for this recipe?",
+    "category": "detail",
+    "type": "detail",
+    "output": "The recipe for Chocolate Lava Cake calls for dark chocolate.",
+    "execution_time": 3.91,
+    "tokens": {
+      "input_tokens": 1219,
+      "output_tokens": 497,
+      "total_tokens": 1716
+    },
+    "cost": 0.001608,
+    "judge_label": "bad",
+    "judge_reasoning": "The user asked a question that was ambiguous (\"this recipe\"). The agent made an ungrounded assumption about what \"this recipe\" referred to (\"Chocolate Lava Cake\") without clarifying with the user. Furthermore, without access to the fixed recipe collection, it is impossible for the evaluator to verify if a recipe for \"Chocolate Lava Cake\" exists in the collection or if it specifically calls for dark chocolate. This means the agent's response cannot be confirmed to be accurately based *only* on the recipe collection, and thus carries a high risk of hallucination or providing invented information, which is explicitly defined as a \"bad\" response in the evaluation criteria."
+  },
+  {
+    "question": "Can I use milk chocolate instead of dark chocolate?",
+    "category": "substitution",
+    "type": "substitution",
+    "output": "I can only provide information from the recipe collection. I don't have information on general ingredient substitutions.",
+    "execution_time": 1.84,
+    "tokens": {
+      "input_tokens": 278,
+      "output_tokens": 148,
+      "total_tokens": 426
+    },
+    "cost": 0.000453,
+    "judge_label": "good",
+    "judge_reasoning": "The user asks for a general ingredient substitution, which is out of scope for a recipe assistant focused on a fixed collection. The agent correctly identifies this as out of scope and declines to answer, stating its limitations. This aligns with the 'good' criteria for identifying out-of-scope questions."
+  },
+  {
+    "question": "How does chocolate lava cake compare to a regular chocolate cake?",
+    "category": "comparison",
+    "type": "comparison",
+    "output": "Chocolate lava cake is a rich dessert characterized by a firm exterior and a molten, gooey chocolate center. It is made with dark chocolate, butter, eggs, sugar, flour, and vanilla extract, and baked quickly at a high temperature to achieve its signature \"lava\" effect.\n\nI do not have a recipe for a \"regular chocolate cake\" in my collection, so I cannot provide a direct comparison.",
+    "execution_time": 13.57,
+    "tokens": {
+      "input_tokens": 1792,
+      "output_tokens": 508,
+      "total_tokens": 2300
+    },
+    "cost": 0.001808,
+    "judge_label": "good",
+    "judge_reasoning": "The agent accurately describes the chocolate lava cake based on its recipe collection. It correctly identifies that it does not have a recipe for \"regular chocolate cake\" and therefore cannot provide a direct comparison. This aligns with the criteria for a good response, as it uses available information and clearly states when information is not available without hallucinating."
+  },
+  {
+    "question": "What are the main ingredients in Miso Soup?",
+    "category": "factual",
+    "type": "recipe",
+    "output": "The main ingredients in Miso Soup are dashi stock, white miso paste, silken tofu, wakame seaweed, and green onion.",
+    "execution_time": 2.17,
+    "tokens": {
+      "input_tokens": 660,
+      "output_tokens": 154,
+      "total_tokens": 814
+    },
+    "cost": 0.000583,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identifies the main ingredients of Miso Soup. This is an accurate and direct answer to the user's question, assuming the information comes from its recipe collection and is not hallucinated."
+  },
+  {
+    "question": "How do you make Miso Soup?",
+    "category": "how-to",
+    "type": "recipe",
+    "output": "To make Miso Soup, follow these instructions:\n\n**Ingredients:**\n* dashi stock\n* white miso paste\n* silken tofu\n* wakame seaweed\n* green onion\n\n**Instructions:**\n1. Bring dashi stock to a gentle simmer.\n2. Add cubed tofu and rehydrated wakame.\n3. Ladle some broth into a bowl, dissolve miso paste in it, then pour back into pot.\n4. Do not boil after adding miso.\n5. Serve topped with sliced green onion.",
+    "execution_time": 3.32,
+    "tokens": {
+      "input_tokens": 1219,
+      "output_tokens": 271,
+      "total_tokens": 1490
+    },
+    "cost": 0.001043,
+    "judge_label": "good",
+    "judge_reasoning": "The agent provides a complete and plausible recipe for Miso Soup, directly answering the user's question. Assuming this information is retrieved from a valid recipe collection, it adheres to the guidelines for a \"good\" response."
+  },
+  {
+    "question": "What kind of tofu is used in Miso Soup?",
+    "category": "detail",
+    "type": "recipe",
+    "output": "Miso soup typically uses silken tofu.",
+    "execution_time": 1.75,
+    "tokens": {
+      "input_tokens": 662,
+      "output_tokens": 110,
+      "total_tokens": 772
+    },
+    "cost": 0.000474,
+    "judge_label": "bad",
+    "judge_reasoning": "The agent makes a statement about a specific ingredient (\"silken tofu\") for a dish (\"Miso Soup\"). The instruction states that responses are \"bad\" if the agent \"makes up recipes, ingredients, or instructions not in the collection (hallucination)\" or \"provides cooking advice... that it invented rather than found in the recipe data.\" The use of \"typically\" suggests general culinary knowledge rather than a direct instruction from a specific recipe in the collection. If the agent's fixed recipe collection does not explicitly state that Miso Soup uses silken tofu, then this information is either made up or comes from outside its designated data source, making it a hallucination or a violation of the \"only information from the recipe collection\" rule. Without direct access to the recipe collection, assuming the agent adheres strictly to the \"only from collection\" rule means any information not explicitly found there is considered a hallucination."
+  },
+  {
+    "question": "Can I use regular miso paste instead of white miso paste?",
+    "category": "substitution",
+    "type": "recipe",
+    "output": "The Miso Soup recipe I found specifically calls for white miso paste. I don't have any information in my recipe collection about substituting regular miso paste for white miso paste.",
+    "execution_time": 8.03,
+    "tokens": {
+      "input_tokens": 1533,
+      "output_tokens": 1258,
+      "total_tokens": 2791
+    },
+    "cost": 0.003605,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identified that the Miso Soup recipe calls for white miso paste. It also correctly identified that it does not have information regarding substitutions for miso paste, thus declining to provide advice it does not have in its data. This aligns with the criteria for a 'good' response, as it does not hallucinate information and accurately states its limitations."
+  },
+  {
+    "question": "How does Miso Soup compare to Tonkotsu Ramen?",
+    "category": "comparison",
+    "type": "recipe",
+    "output": "I don't have a recipe for Tonkotsu Ramen, so I'm unable to compare it to Miso Soup. I can tell you that Miso Soup is a Japanese soup that is easy to make and features dashi stock, white miso paste, silken tofu, wakame seaweed, and green onion. It's often considered a quick, healthy, and vegan-adaptable dish.",
+    "execution_time": 2.68,
+    "tokens": {
+      "input_tokens": 703,
+      "output_tokens": 266,
+      "total_tokens": 969
+    },
+    "cost": 0.000876,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identifies that it does not have a recipe for Tonkotsu Ramen and therefore cannot provide a full comparison. It also provides accurate information about Miso Soup, which it presumably has a recipe for, without hallucinating any information or providing out-of-scope advice. It directly addresses both components of the user's question to the best of its ability given the limitations."
+  },
+  {
+    "question": "What cut of lamb is used in this recipe?",
+    "category": "factual",
+    "type": "single_choice",
+    "output": "The Lamb Shawarma Bowl recipe uses lamb leg.",
+    "execution_time": 2.6,
+    "tokens": {
+      "input_tokens": 670,
+      "output_tokens": 282,
+      "total_tokens": 952
+    },
+    "cost": 0.000906,
+    "judge_label": "good",
+    "judge_reasoning": "The agent directly answers the question about the cut of lamb used in the specified recipe, using only information that would be present in a recipe collection. Assuming the recipe indeed calls for lamb leg, this is a good response."
+  },
+  {
+    "question": "How do you prepare the lamb for the shawarma bowl?",
+    "category": "how_to",
+    "type": "single_choice",
+    "output": "To prepare the lamb for the Shawarma Bowl, you should:\n\n1.  Slice the lamb thinly.\n2.  Marinate it with cumin, coriander, paprika, turmeric, garlic, and lemon juice for at least 30 minutes.\n3.  Cook the lamb in a hot skillet until it's browned and cooked through.",
+    "execution_time": 2.93,
+    "tokens": {
+      "input_tokens": 1611,
+      "output_tokens": 282,
+      "total_tokens": 1893
+    },
+    "cost": 0.001188,
+    "judge_label": "good",
+    "judge_reasoning": "The agent provides clear and plausible steps for preparing lamb for a shawarma bowl. The instructions for slicing, marinating with relevant spices, and cooking method are consistent with how one would prepare shawarma lamb. Assuming this information is directly from the recipe collection, the response is accurate and helpful."
+  },
+  {
+    "question": "What are the specific measurements for the tahini sauce ingredients?",
+    "category": "detail",
+    "type": "single_choice",
+    "output": "I'm sorry, I don't have the specific measurements for tahini sauce ingredients in the recipes I have. The recipes mention using tahini sauce but do not provide the exact ingredient quantities for making it.",
+    "execution_time": 4.05,
+    "tokens": {
+      "input_tokens": 2671,
+      "output_tokens": 401,
+      "total_tokens": 3072
+    },
+    "cost": 0.001804,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identified that it does not have the specific measurements for tahini sauce ingredients, which aligns with the criteria for a good response as it correctly identifies when information is not available."
+  },
+  {
+    "question": "What can be used instead of tahini sauce?",
+    "category": "substitution",
+    "type": "single_choice",
+    "output": "I don't have information on what can be used as a substitute for tahini sauce in my current recipe collection.",
+    "execution_time": 4.64,
+    "tokens": {
+      "input_tokens": 2663,
+      "output_tokens": 518,
+      "total_tokens": 3181
+    },
+    "cost": 0.002094,
+    "judge_label": "good",
+    "judge_reasoning": "The user asks for a substitute for tahini sauce. The agent correctly states it does not have information on substitutes in its collection. This avoids hallucination and correctly identifies that it cannot provide advice not in its data."
+  },
+  {
+    "question": "How does a lamb shawarma bowl differ from a chicken shawarma wrap?",
+    "category": "comparison",
+    "type": "single_choice",
+    "output": "I don't have a recipe for a chicken shawarma wrap in my collection, so I can't tell you how it differs from a lamb shawarma bowl. However, I do have a recipe for a Lamb Shawarma Bowl if you'd like to know more about that!",
+    "execution_time": 4.57,
+    "tokens": {
+      "input_tokens": 1104,
+      "output_tokens": 614,
+      "total_tokens": 1718
+    },
+    "cost": 0.001866,
+    "judge_label": "good",
+    "judge_reasoning": "The agent correctly identifies that it does not have a recipe for \"chicken shawarma wrap\" and therefore cannot make a comparison. It properly acknowledges the parts of the user's question that it cannot answer and offers information about the recipe it does have (Lamb Shawarma Bowl). This aligns with the criteria for a good response, specifically identifying when a recipe is not available and declining to hallucinate."
+  }
+]

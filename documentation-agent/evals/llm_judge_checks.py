@@ -97,7 +97,7 @@ Agent's Answer:
 def create_correctness_judge() -> Agent:
     return Agent(
         name="correctness_judge",
-        model="openai:gpt-4o-mini",
+        model='google-gla:gemini-2.5-flash-lite',
         instructions=CORRECTNESS_INSTRUCTIONS,
         output_type=CorrectnessResult,
     )
@@ -145,7 +145,7 @@ INSTRUCTION_FOLLOWING_PROMPT = """
 def create_instruction_judge() -> Agent:
     return Agent(
         name="instruction_judge",
-        model="openai:gpt-4o-mini",
+        model='google-gla:gemini-2.5-flash-lite',
         instructions=INSTRUCTION_FOLLOWING_INSTRUCTIONS,
         output_type=InstructionFollowingResult,
     )
@@ -213,7 +213,7 @@ Agent's Final Answer:
 def create_trajectory_judge() -> Agent:
     return Agent(
         name="trajectory_judge",
-        model="openai:gpt-4o-mini",
+        model='google-gla:gemini-2.5-flash-lite',
         instructions=TRAJECTORY_INSTRUCTIONS,
         output_type=TrajectoryResult,
     )

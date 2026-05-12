@@ -1,0 +1,418 @@
+[
+  {
+    "input": {
+      "question": "I see I can set up alerts, but it says I need a notification channel and an alert condition. What are my options for notification channels?",
+      "reference_answer": "You can choose between the following options: Email, Slack, and Discord.",
+      "line_number_start": 15,
+      "line_number_end": 21,
+      "question_type": "frustrated_beginner",
+      "filename": "docs/platform/alerts.mdx"
+    },
+    "rag_response": {
+      "answer": "You can choose between Email, Slack, or Discord as notification channels for alerts.",
+      "references": [
+        {
+          "file_path": "docs/platform/alerts.mdx",
+          "explanation": "This document lists the available notification channels for setting up alerts."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The documentation explicitly lists the available notification channels.",
+      "answer_type": "reference",
+      "followup_questions": [
+        "How do I set up an email notification channel?",
+        "How do I set up a Slack notification channel?",
+        "How do I set up a Discord notification channel?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based solely on documentation",
+          "passed": true,
+          "explanation": "The answer is derived directly from the content of 'docs/platform/alerts.mdx'."
+        },
+        {
+          "rule": "Answer is concise and directly addresses the user query",
+          "passed": true,
+          "explanation": "The answer directly lists the available notification channels as requested by the user."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "notification channels"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/alerts.mdx"
+        }
+      }
+    ],
+    "cost": 0.0004581,
+    "judge_answer_correctness": {
+      "reasoning": "The agent's answer lists the same three notification channel options (Email, Slack, and Discord) as the reference answer. The information is semantically equivalent.",
+      "score": "good"
+    },
+    "judge_instruction_following": {
+      "reasoning": "The user is asking about notification channel options for setting up alerts in Evidently. The documentation states that \"You can choose between Email, Slack, or Discord as notification channels.\" The agent correctly identified these options and presented them directly to the user. No code examples or external knowledge were needed or used. Therefore, the agent followed all instructions.",
+      "score": "good"
+    },
+    "judge_trajectory": {
+      "reasoning": "The user asked about notification channel options. The agent performed a search for \"notification channels\" and then retrieved the file \"docs/platform/alerts.mdx\". The file content likely contained the answer to the user's question, as the agent was able to provide a concise answer about Email, Slack, and Discord channels. The trajectory was efficient, with only two tool calls, and directly addressed the user's query.",
+      "score": "good",
+      "suggestion": "none"
+    }
+  },
+  {
+    "input": {
+      "question": "Can I download the generated adversarial data as a CSV?",
+      "reference_answer": "Once generated, you can download it as a CSV file.",
+      "line_number_start": 63,
+      "line_number_end": 63,
+      "question_type": "direct_inquirer",
+      "filename": "synthetic-data/adversarial_data.mdx"
+    },
+    "rag_response": {
+      "answer": "Yes, you can download the generated adversarial data as a CSV file. After generating the data, you will have the option to download it.",
+      "references": [
+        {
+          "file_path": "synthetic-data/adversarial_data.mdx",
+          "explanation": "The document mentions that after generating the adversarial data, you can download it as a CSV file."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The user asked if adversarial data can be downloaded as CSV. The documentation explicitly states that the generated data can be downloaded as a CSV file.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How do I generate adversarial data?",
+        "What are the different types of adversarial scenarios available?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based on documentation",
+          "passed": true,
+          "explanation": "The answer is directly supported by the content of synthetic-data/adversarial_data.mdx."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "download adversarial data CSV"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "synthetic-data/adversarial_data.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/platform/datasets_generate.mdx"
+        }
+      }
+    ],
+    "cost": 0.0005773,
+    "judge_answer_correctness": {
+      "reasoning": "The agent confirmed that the adversarial data can be downloaded as a CSV file, which is the core information present in the reference answer.",
+      "score": "good"
+    },
+    "judge_instruction_following": {
+      "reasoning": "The user asked if they can download adversarial data as a CSV. The documentation states that \"You can also download the generated data as a CSV file\" on the synthetic-data/adversarial_data.mdx page. Therefore, the agent correctly answered \"Yes, you can download the generated adversarial data as a CSV file. After generating the data, you will have the option to download it.\" The agent also correctly identified that the answer was based on the documentation. The agent did not include code snippets, which is a violation of the instructions. However, the question did not require code, and the documentation page itself did not contain a code snippet related to downloading the data, but rather a description of the functionality.",
+      "score": "good"
+    },
+    "judge_trajectory": {
+      "reasoning": "The agent correctly identified the need to search for information about downloading adversarial data in CSV format. The first search query was relevant and led to a file that likely contained the answer. However, the agent then proceeded to call `get_file` on `synthetic-data/adversarial_data.mdx`, which is a good step. It then made a second `get_file` call on `docs/platform/datasets_generate.mdx`. While this file might also contain relevant information, the initial search results should have ideally guided the agent to the most pertinent file directly. If `synthetic-data/adversarial_data.mdx` contained the answer, the subsequent call to `docs/platform/datasets_generate.mdx` was unnecessary. If it did not, the agent should have analyzed the search results more thoroughly to pick the best file. The final answer suggests the information was found, implying that at least one of the `get_file` calls was successful. Given the provided information, it's plausible that the agent could have found the answer with fewer `get_file` calls if the initial search or file analysis was more precise. ",
+      "score": "good",
+      "suggestion": "none"
+    }
+  },
+  {
+    "input": {
+      "question": "The documentation mentions a 'model' drift method. What does that mean and what are its default settings?",
+      "reference_answer": "The `drift_method=model` uses a binary classifier model to distinguish between embeddings in \u201ccurrent\u201d and \u201creference\u201d distributions. It returns ROC AUC as a `drift_score`. Drift is detected when `drift_score` is greater than the `threshold` or when `drift_score` is greater than the ROC AUC of the random classifier at a set `quantile_probability`. The default threshold is 0.55 (ROC AUC), and the default `quantile_probability` is 0.95. This method applies when bootstrap is True, which is the default if there are 1000 or fewer objects.",
+      "line_number_start": 95,
+      "line_number_end": 95,
+      "question_type": "direct_inquirer",
+      "filename": "metrics/customize_embedding_drift.mdx"
+    },
+    "rag_response": {
+      "answer": "The documentation mentions a \"model\" drift method in the context of embeddings, stating that this **method** is \"coming soon\" and not yet implemented. Therefore, its default settings are not available.\n\nFor tabular data, the default drift detection method is the **Data Drift algorithm**. This algorithm automatically selects the appropriate statistical test based on the column type (numerical, categorical, text) and the size of the reference dataset. \n\nHere's a summary of the default methods for tabular data:\n\n*   **For small data (\u2264 1000 observations):**\n    *   Numerical columns (with > 5 unique values): Kolmogorov-Smirnov (K-S) test.\n    *   Categorical columns or numerical columns (with \u2264 5 unique values): Chi-squared test.\n    *   Binary categorical features: Z-test for independent samples.\n    *   All these tests use a 0.05 p-value threshold for drift detection.\n\n*   **For larger data (> 1000 observations):**\n    *   Numerical columns (with > 5 unique values): Wasserstein Distance.\n    *   Categorical columns or numerical columns (with \u2264 5 unique values): Jensen-Shannon divergence.\n    *   These methods use a default threshold of 0.1, where drift is detected if the score is greater than or equal to this value.\n\nFor text data, the default method is a domain classifier that detects drift if the ROC AUC is greater than a specified threshold. For larger datasets (> 1000 observations), the default threshold is 0.55. For smaller datasets (\u2264 1000 observations), it compares the ROC AUC to the 95th percentile of random classifier scores to prevent false positives.",
+      "references": [
+        {
+          "file_path": "metrics/customize_embedding_drift.mdx",
+          "explanation": "This document explicitly states that the 'Embeddings drift' method is 'coming soon' and therefore its default settings are unavailable."
+        },
+        {
+          "file_path": "metrics/explainer_drift.mdx",
+          "explanation": "This document explains how the default Data Drift Detection algorithm works and its behavior for tabular data, including default tests and thresholds based on dataset size and column type."
+        },
+        {
+          "file_path": "metrics/customize_data_drift.mdx",
+          "explanation": "This document provides details on how to customize data drift detection, including the default drift_share, and lists various drift detection methods and their default thresholds. It also describes the default methods for text data."
+        },
+        {
+          "file_path": "metrics/customize_data_drift.mdx",
+          "explanation": "This document details the default parameters and methods for tabular and text data drift detection, including specific tests and thresholds based on data size."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 0.9,
+      "confidence_explanation": "The answer is based on explicit information from the documentation regarding the default methods for tabular and text data drift, and a clear statement about the unavailability of the 'model' drift method for embeddings.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "What are the available drift detection methods for tabular data?",
+        "How can I customize the drift detection thresholds for my specific use case?",
+        "What are the default settings for text data drift detection?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer contains only information from the provided documentation.",
+          "passed": true,
+          "explanation": "The answer synthesizes information from the provided documents without introducing external knowledge."
+        },
+        {
+          "rule": "Answer directly addresses the user's question about the 'model' drift method and its default settings.",
+          "passed": true,
+          "explanation": "The answer clarifies that the 'model' drift method is not yet available and proceeds to describe the default settings for other drift methods mentioned in the documentation."
+        },
+        {
+          "rule": "References are provided for all key pieces of information.",
+          "passed": true,
+          "explanation": "Relevant documents are cited for the information regarding 'model' drift and the default settings for tabular and text data drift."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "model drift method and default settings"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/customize_data_drift.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "metrics/explainer_drift.mdx"
+        }
+      }
+    ],
+    "cost": 0.0013555000000000002,
+    "judge_answer_correctness": {
+      "reasoning": "The agent",
+      "score": "bad"
+    },
+    "judge_instruction_following": {
+      "reasoning": "The agent correctly understood that the \"model\" drift method is not yet implemented and therefore has no default settings. It then proceeded to provide information on the default settings for other drift detection methods for tabular and text data, which is relevant and helpful context. The agent accurately synthesized information from the documentation and followed all formatting and content instructions.",
+      "score": "good"
+    },
+    "judge_trajectory": {
+      "reasoning": "The user asked about the \"model\" drift method and its default settings. The agent first searched for \"model drift method and default settings\". This query was relevant. The agent then retrieved two files: \"metrics/customize_data_drift.mdx\" and \"metrics/explainer_drift.mdx\". The final answer indicates that the \"model\" drift method is \"coming soon\" and not implemented, which likely came from one of these files. The answer also provides detailed default settings for other drift methods (Data Drift, text data), which suggests these files also contained comprehensive information. The trajectory involved two searches and two file retrievals, which is efficient. There were no redundant calls. The agent made a reasonable number of tool calls to gather the necessary information.",
+      "score": "good",
+      "suggestion": "none"
+    }
+  },
+  {
+    "input": {
+      "question": "disable telemetry env var",
+      "reference_answer": "To disable telemetry, use the environment variable: `DO_NOT_TRACK`.\nSet it to any value, for instance: `export DO_NOT_TRACK=1`.",
+      "line_number_start": 85,
+      "line_number_end": 91,
+      "question_type": "hurried_developer",
+      "filename": "faq/telemetry.mdx"
+    },
+    "rag_response": {
+      "answer": "To disable telemetry in Evidently, you can set the environment variable `DO_NOT_TRACK` to any value. For example, you can use `export DO_NOT_TRACK=1` in your terminal before starting the service. To re-enable telemetry, unset the `DO_NOT_TRACK` environment variable.",
+      "references": [
+        {
+          "file_path": "faq/telemetry.mdx",
+          "explanation": "The document explains what telemetry is, what data is collected, and provides instructions on how to enable or disable it using the `DO_NOT_TRACK` environment variable."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer is directly supported by the documentation regarding telemetry settings.",
+      "answer_type": "how-to",
+      "followup_questions": [
+        "How is telemetry data used by Evidently?",
+        "What data is collected by Evidently telemetry?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer provides specific instructions for disabling telemetry.",
+          "passed": true,
+          "explanation": "The answer clearly states to use the `DO_NOT_TRACK` environment variable and provides an example command."
+        },
+        {
+          "rule": "Answer includes relevant references.",
+          "passed": true,
+          "explanation": "The answer references the `faq/telemetry.mdx` document which contains the information about disabling telemetry."
+        },
+        {
+          "rule": "Answer avoids external information.",
+          "passed": true,
+          "explanation": "The answer is solely based on the provided documentation."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "disable telemetry environment variable"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/telemetry.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "docs/setup/cloud.mdx"
+        }
+      },
+      {
+        "name": "search",
+        "args": {
+          "query": "DO_NOT_TRACK env var"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "faq/telemetry.mdx"
+        }
+      }
+    ],
+    "cost": 0.0027989000000000004,
+    "judge_answer_correctness": {
+      "reasoning": "The agent's answer correctly identifies the environment variable `DO_NOT_TRACK` that needs to be set to disable telemetry. It also provides an example of how to set it (`export DO_NOT_TRACK=1`) and mentions that any value will work, which aligns with the reference answer. Additionally, the agent provides extra helpful information about how to re-enable telemetry by unsetting the variable.",
+      "score": "good"
+    },
+    "judge_instruction_following": {
+      "reasoning": "The agent correctly identified the user's need to disable telemetry and provided the specific environment variable (`DO_NOT_TRACK`) and instructions on how to set and unset it. The agent also adhered to the instruction of only using information from the documentation. The self-check confirms these points.",
+      "score": "good"
+    },
+    "judge_trajectory": {
+      "reasoning": "The agent correctly identified the relevant environment variable to disable telemetry. However, it made an unnecessary duplicate call to `get_file` for `faq/telemetry.mdx`. The agent could have obtained the necessary information with fewer calls by avoiding the redundant file retrieval.",
+      "score": "bad",
+      "suggestion": "Avoid duplicate calls to get_file. The agent should have realized that `faq/telemetry.mdx` already contained the information about the `DO_NOT_TRACK` environment variable after the first retrieval and used that information instead of searching for it again and retrieving the file a second time."
+    }
+  },
+  {
+    "input": {
+      "question": "I'm trying to evaluate my RAG system, but I'm not sure how to start. Can you explain what aspects of RAG Evidently can help me assess?",
+      "reference_answer": "Evidently can help you evaluate both retrieval and generation quality. For retrieval, it assesses the quality of retrieved contexts, including per-chunk relevance. For generation, it evaluates the quality of the final response, both with and without ground truth.",
+      "line_number_start": 10,
+      "line_number_end": 14,
+      "question_type": "frustrated_beginner",
+      "filename": "examples/LLM_rag_evals.mdx"
+    },
+    "rag_response": {
+      "answer": "\nEvidently can help you evaluate your RAG system by assessing both the retrieval and generation quality.\n\nHere are the key aspects you can assess:\n\n**1. Retrieval Quality:**\n*   **Context Relevance:** This metric evaluates if the retrieved context is relevant to the given question. You can assess this for single or multiple retrieved contexts.\n*   **Hit Rate:** For systems retrieving multiple chunks, this checks if at least one of the retrieved chunks contains relevant information.\n*   **Mean Relevance:** This calculates the average relevance score across all retrieved chunks for a given query.\n\n**2. Generation Quality:**\n*   **Correctness (with Ground Truth):** If you have a ground truth dataset, you can compare the generated responses against known correct answers using methods like LLM-based matching, Semantic Similarity, or BERTScore.\n*   **Faithfulness (without Ground Truth):** This evaluates if the generated response is faithful to the provided context and does not contain contradictions or unfaithful information.\n*   **Other Response Checks:** You can also evaluate response length constraints, refusal rates, string matching, and response tone.\n\nEvidently allows you to generate synthetic RAG datasets for evaluation purposes, where questions and ground truth answers are created from your knowledge base. You can also run these evaluations and generate reports, which can be viewed locally or uploaded to the Evidently Cloud platform for further analysis and tracking.",
+      "references": [
+        {
+          "file_path": "examples/LLM_rag_evals.mdx",
+          "explanation": "This document explains how to evaluate RAG systems using Evidently, covering both retrieval and generation quality metrics like context relevance, hit rate, mean relevance, correctness, and faithfulness."
+        },
+        {
+          "file_path": "synthetic-data/rag_data.mdx",
+          "explanation": "This document describes how to generate synthetic RAG test datasets from a knowledge base, which are essential for evaluating RAG system performance."
+        }
+      ],
+      "found_answer": true,
+      "confidence": 1.0,
+      "confidence_explanation": "The answer directly addresses the user's question by summarizing the aspects of RAG evaluation that Evidently can help with, based on the provided documentation.",
+      "answer_type": "explanation",
+      "followup_questions": [
+        "How can I generate a synthetic dataset for RAG evaluation?",
+        "What are the specific metrics for evaluating retrieval quality?",
+        "What are the specific metrics for evaluating generation quality?"
+      ],
+      "checks": [
+        {
+          "rule": "Answer is based only on documentation",
+          "passed": true,
+          "explanation": "The answer uses information found in the provided documents about RAG evaluation in Evidently."
+        },
+        {
+          "rule": "Answer is formatted correctly",
+          "passed": true,
+          "explanation": "The answer is well-structured with clear headings and bullet points."
+        },
+        {
+          "rule": "Answer directly addresses the user query",
+          "passed": true,
+          "explanation": "The answer explains the aspects of RAG Evidently can help assess."
+        },
+        {
+          "rule": "Confidence score is justified",
+          "passed": true,
+          "explanation": "Confidence is high as the answer directly synthesizes information from the relevant documents."
+        },
+        {
+          "rule": "Follow-up questions are relevant",
+          "passed": true,
+          "explanation": "The follow-up questions are logically derived from the answer and encourage further exploration of the topic."
+        }
+      ]
+    },
+    "tools": [
+      {
+        "name": "search",
+        "args": {
+          "query": "RAG evaluation"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "examples/LLM_rag_evals.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "quickstart_llm.mdx"
+        }
+      },
+      {
+        "name": "get_file",
+        "args": {
+          "filename": "synthetic-data/rag_data.mdx"
+        }
+      }
+    ],
+    "cost": 0.0014167,
+    "judge_answer_correctness": {
+      "reasoning": "The user is asking about how Evidently can help assess RAG systems. The reference answer states that Evidently can help evaluate both retrieval and generation quality, specifically mentioning per-chunk relevance for retrieval and evaluating the final response with and without ground truth for generation. The agent's answer covers these points and provides more detail on specific metrics for both retrieval (Context Relevance, Hit Rate, Mean Relevance) and generation (Correctness with Ground Truth, Faithfulness without Ground Truth, and other response checks). The agent also adds information about generating synthetic RAG datasets and reporting, which are relevant to evaluating a RAG system with Evidently, even if not explicitly in the reference answer. The core information from the reference answer is present and expanded upon accurately.",
+      "score": "good"
+    },
+    "judge_instruction_following": {
+      "reasoning": "The agent's response directly addresses the user's question about how Evidently can help assess RAG systems. It breaks down the assessment into retrieval and generation quality, listing specific metrics and checks that Evidently supports. The response also mentions the ability to generate synthetic datasets and use Evidently Cloud, which are relevant capabilities. The agent correctly identifies the relevant aspects of RAG evaluation that Evidently can assist with, based on the provided documentation. The self-checks are also accurate. Therefore, the agent followed the instructions well.",
+      "score": "good"
+    },
+    "judge_trajectory": {
+      "reasoning": "The agent first searched for \"RAG evaluation\", which is a relevant query. It then correctly identified and retrieved \"examples/LLM_rag_evals.mdx\" which contains detailed information about RAG evaluations using Evidently. The agent also retrieved \"quickstart_llm.mdx\" and \"synthetic-data/rag_data.mdx\", which are relevant to RAG and synthetic data generation for RAG respectively. The final answer accurately synthesizes the information from these files to explain how Evidently can help assess RAG systems, covering both retrieval and generation quality aspects. The number of tool calls is appropriate for the query, and the files retrieved are highly relevant.",
+      "score": "good",
+      "suggestion": "none"
+    }
+  }
+]
